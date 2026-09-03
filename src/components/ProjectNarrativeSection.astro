@@ -1,0 +1,18 @@
+---
+interface Props {
+  number?: string;
+  label: string;
+  title: string;
+  emphasis?: boolean;
+}
+
+const { number, label, title, emphasis = false } = Astro.props;
+---
+
+<section class:list={["narrative-section", { emphasis }]}>
+  <header>
+    <p class="section-kicker">{number && <span>{number} / </span>}{label}</p>
+    <h2>{title}</h2>
+  </header>
+  <div class="narrative-copy"><slot /></div>
+</section>

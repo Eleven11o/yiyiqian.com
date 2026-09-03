@@ -1,0 +1,33 @@
+---
+interface VimeoVideo {
+  provider: "Vimeo";
+  id: string;
+  title: string;
+  watchUrl: string;
+  caption?: string;
+}
+
+interface Props {
+  video: VimeoVideo;
+}
+
+const { video } = Astro.props;
+const embedUrl = `https://player.vimeo.com/video/${video.id}?dnt=1&title=0&byline=0&portrait=0`;
+---
+
+<figure class="project-video">
+  <div class="project-video-frame">
+    <iframe
+      src={embedUrl}
+      title={video.title}
+      loading="lazy"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <figcaption>
+    <span>{video.caption ?? video.title}</span>
+    <a class="text-link" href={video.watchUrl} rel="noreferrer">View on Vimeo ↗</a>
+  </figcaption>
+</figure>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Proxemics-based cinematic VR research placeholder</title>
+  <desc id="desc">An abstract spatial diagram showing a viewer and character relationships</desc>
+  <rect width="1600" height="1000" fill="#e2ddd2"/>
+  <g fill="none" stroke="#222522">
+    <circle cx="800" cy="520" r="115" stroke-width="3"/>
+    <circle cx="800" cy="520" r="260" stroke-width="2" opacity=".7"/>
+    <circle cx="800" cy="520" r="410" stroke-width="1" opacity=".45"/>
+    <path d="M800 110v820M390 520h820" stroke-width="1" opacity=".35"/>
+  </g>
+  <circle cx="800" cy="520" r="18" fill="#222522"/>
+  <circle cx="625" cy="350" r="24" fill="#765e50"/>
+  <circle cx="1010" cy="590" r="24" fill="#765e50"/>
+  <path d="m800 520-175-170M800 520l210 70" stroke="#765e50" stroke-width="3"/>
+  <text x="70" y="82" font-family="Arial, sans-serif" font-size="21" letter-spacing="5" fill="#222522">PROXEMICS / CINEMATIC VR / VIEWER–CHARACTER RELATIONS</text>
+  <text x="70" y="940" font-family="Arial, sans-serif" font-size="17" fill="#6d6a64">RESEARCH DIAGRAM PLACEHOLDER</text>
+</svg>

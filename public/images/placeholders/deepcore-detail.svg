@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Deepcore detail placeholder</title>
+  <desc id="desc">An abstract production-image placeholder</desc>
+  <rect width="1600" height="1000" fill="#d8d3c8"/>
+  <path d="M0 720 475 235l284 309 227-172 614 483v145H0z" fill="#777c73"/>
+  <path d="m0 809 483-428 282 278 263-155 572 390v106H0z" fill="#3e4741" opacity=".82"/>
+  <path d="M0 905 377 665l282 145 310-93 631 221v62H0z" fill="#1c2420"/>
+  <text x="70" y="90" font-family="Arial, sans-serif" font-size="20" letter-spacing="5" fill="#1c2420">PROCESS / ENVIRONMENT / STILL</text>
+</svg>

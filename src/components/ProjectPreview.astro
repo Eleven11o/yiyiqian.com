@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  index?: number;
+  eager?: boolean;
+}
+
+const { project, index, eager = false } = Astro.props;
+const { data } = project;
+---
+
+<article class="project-preview">
+  <a class="project-image-link" href={`/works/${project.id}/`} aria-label={`View ${data.title}`}>
+    <img
+      src={data.cover}
+      alt={data.coverAlt}
+      width={data.coverWidth}
+      height={data.coverHeight}
+      loading={eager ? "eager" : "lazy"}
+      fetchpriority={eager ? "high" : "auto"}
+    />
+  </a>
+  <div class="project-preview-info">
+    <div class="project-index-title">
+      {index !== undefined && <span class="project-index">{String(index + 1).padStart(2, "0")}</span>}
+      <h3><a href={`/works/${project.id}/`}>{data.title}</a></h3>
+    </div>
+    <div class="project-archive-meta">
+      <p>{data.category}</p>
+      <p>{data.year}</p>
+    </div>
+  </div>
+</article>

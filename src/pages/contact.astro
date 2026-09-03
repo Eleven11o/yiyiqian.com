@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/profile";
+
+const externalProfiles = [
+  ["Google Scholar", profile.googleScholar],
+  ["ORCID", profile.orcid],
+  ["LinkedIn", profile.linkedin],
+].filter(([, href]) => Boolean(href));
+---
+
+<BaseLayout title="Contact — Yiyi Qian" description="Contact and academic profile links for Yiyi Qian.">
+  <section class="simple-page contact-page shell">
+    <p class="section-kicker">Contact</p>
+    <h1>Let’s connect.</h1>
+    <p class="contact-intro">For research collaboration, exhibitions, creative projects, or PhD-related conversations.</p>
+    <div class="contact-links">
+      {profile.email ? <a href={`mailto:${profile.email}`}>{profile.email}</a> : <p>Email address to be added.</p>}
+      {externalProfiles.map(([label, href]) => <a href={href} rel="me noreferrer">{label} ↗</a>)}
+    </div>
+  </section>
+</BaseLayout>

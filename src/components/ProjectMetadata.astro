@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { data } = Astro.props.project;
+const rows = [
+  { label: "Year", value: [String(data.year)] },
+  { label: "Type", value: [data.category] },
+  { label: "Role", value: data.role },
+  { label: "Tools / Medium", value: data.medium },
+  { label: "Research area", value: data.researchAreas },
+].filter((row) => row.value.length > 0);
+---
+
+<aside class="project-metadata" aria-label="Project metadata">
+  <dl>
+    {rows.map((row) => (
+      <div>
+        <dt>{row.label}</dt>
+        <dd>{row.value.join(" / ")}</dd>
+      </div>
+    ))}
+  </dl>
+  {data.tags.length > 0 && (
+    <ul class="tag-list" aria-label="Project topics">
+      {data.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+  )}
+</aside>

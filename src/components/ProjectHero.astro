@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+---
+
+<header class="project-hero shell">
+  <div class="project-hero-title">
+    <p class="section-kicker">{data.category} · {data.year}</p>
+    <h1>{data.title}</h1>
+    {data.titleZh && <p class="project-title-zh" lang="zh-Hans">{data.titleZh}</p>}
+    {data.subtitle && <p class="project-subtitle">{data.subtitle}</p>}
+  </div>
+  <figure class="project-hero-media">
+    <img
+      src={data.cover}
+      alt={data.coverAlt}
+      width={data.coverWidth}
+      height={data.coverHeight}
+      fetchpriority="high"
+    />
+  </figure>
+  <p class="project-deck">{data.description}</p>
+</header>

@@ -1,0 +1,46 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/profile";
+
+const about = await getEntry("pages", "about");
+if (!about || about.data.pageType !== "about") throw new Error("About page content is missing.");
+
+const lists = [
+  ["Education", about.data.education],
+  ["Selected awards", about.data.awards],
+  ["Exhibitions", about.data.exhibitions],
+  ["Academic / creative experience", about.data.experience],
+  ["Skills", about.data.skills],
+] as const;
+---
+
+<BaseLayout title="About — Yiyi Qian" description="Biography, research interests, and experience of artist and XR/HCI researcher Yiyi Qian.">
+  <header class="page-header about-header shell">
+    <p class="section-kicker">{about.data.eyebrow}</p>
+    <h1>{about.data.title}</h1>
+    <p class="about-position">{profile.position}</p>
+  </header>
+
+  <div class="about-layout shell">
+    <section class="about-biography" aria-labelledby="biography-title">
+      <p class="section-kicker">Biography</p>
+      <h2 id="biography-title" class="visually-hidden">Biography</h2>
+      <p>{about.data.biography}</p>
+    </section>
+
+    <aside class="about-interests">
+      <h2>Research interests</h2>
+      <ul>{about.data.researchInterests.map((item) => <li>{item}</li>)}</ul>
+    </aside>
+  </div>
+
+  <div class="profile-lists shell">
+    {lists.map(([title, items]) => (
+      <section>
+        <h2>{title}</h2>
+        <ul>{items.map((item) => <li>{item}</li>)}</ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "title": "From Que-Tower Procession to Stereoscopic 360° VR: Viewpoint Translation and Depth-Layered Construction of a Historical Urban Scene",
+      "authors": ["Yiyi Qian", "Zirui Huang", "Kebo Zhang", "Angela Chulei Tang", "Zhen Yu", "Yin Bing"],
+      "venue": "VINCI 2026",
+      "conference": "Cultural Computing Special Track",
+      "kind": "academic",
+      "status": "accepted"
+    },
+    {
+      "title": "Rhythm, Symbol, and Presence: Translating Interaction Ritual Chains for Digital-Space Installations",
+      "authors": ["Yiyi Qian", "Zhen Yu"],
+      "venue": "ICHEC 2025",
+      "year": 2025,
+      "kind": "academic",
+      "status": "published",
+      "doi": "https://doi.org/10.1145/3786995.3787041",
+      "projectUrl": "/works/resonance/"
+    },
+    {
+      "title": "Visualizing the Spatio-Temporal Narratives of Hong Kong’s Southbound Literati",
+      "authors": ["Yuan Zhang", "Angela Chulei Tang", "Yu Sun", "Yansong Chen", "Qi Duanmu", "Bowen Wang", "Minzhi Shen", "Yiyi Qian", "Bing Yin"],
+      "venue": "SIGGRAPH Asia 2025 Posters",
+      "year": 2025,
+      "kind": "academic",
+      "status": "published",
+      "doi": "https://doi.org/10.1145/3757374.3771486"
+    }
+  ]
+}

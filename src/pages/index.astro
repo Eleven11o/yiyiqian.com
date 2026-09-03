@@ -1,0 +1,58 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectPreview from "../components/ProjectPreview.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { researchAreas } from "../data/research";
+
+const home = await getEntry("pages", "home");
+if (!home || home.data.pageType !== "home") throw new Error("Home page content is missing.");
+
+const projects = (await getCollection("projects"))
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout>
+  <section class="home-hero shell">
+    <p class="hero-eyebrow">{home.data.eyebrow}</p>
+    <h1>{home.data.title}</h1>
+    <div class="hero-positioning">
+      <p class="hero-position">{home.data.position}</p>
+      <p class="hero-practice">{home.data.practiceLine}</p>
+    </div>
+    <div class="hero-statement">
+      <p>{home.data.researchStatement}</p>
+    </div>
+    <p class="hero-introduction">{home.data.introduction}</p>
+  </section>
+
+  <section class="selected-works shell" aria-labelledby="selected-works-title">
+    <SectionHeading id="selected-works-title" eyebrow="01 / Practice" title="Selected works" linkHref="/works/" linkLabel="View all works" />
+    <div class="selected-project-list">
+      {projects.map((project, index) => <ProjectPreview project={project} index={index} eager={index === 0} />)}
+    </div>
+  </section>
+
+  <section class="home-research shell" aria-labelledby="research-directions-title">
+    <SectionHeading id="research-directions-title" eyebrow="02 / Inquiry" title="Research directions" />
+    <div class="research-index">
+      {researchAreas.slice(0, 4).map((area, index) => (
+        <article>
+          <p>{String(index + 1).padStart(2, "0")}</p>
+          <h3>{area.title}</h3>
+          <p>{area.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="home-about shell">
+    <p class="section-kicker">03 / Position</p>
+    <div>
+      <h2>Artistic practice as a form of research.</h2>
+      <p>I develop immersive and interactive work while asking how spatial experiences are authored, perceived, and studied.</p>
+      <a class="text-link" href="/about/">About Yiyi →</a>
+    </div>
+  </section>
+</BaseLayout>

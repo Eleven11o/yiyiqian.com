@@ -1,0 +1,49 @@
+---
+interface Publication {
+  title: string;
+  authors: string[];
+  venue?: string;
+  conference?: string;
+  year?: number | string;
+  kind: "academic" | "creative";
+  status: "published" | "accepted" | "under-review";
+  doi?: string;
+  pdf?: string;
+  projectUrl?: string;
+  externalUrl?: string;
+  citation?: string;
+}
+
+interface Props {
+  item: Publication;
+  index: number;
+}
+
+const { item, index } = Astro.props;
+---
+
+<article class="publication-item">
+  <p class="publication-number">{String(index + 1).padStart(2, "0")}</p>
+  <div>
+    <h3>{item.title}</h3>
+    <p class="publication-authors">
+      {item.authors.map((author, authorIndex) => (
+        <span>
+          {authorIndex > 0 && ", "}
+          {author === "Yiyi Qian" ? <strong class="publication-author-self">{author}</strong> : author}
+        </span>
+      ))}
+    </p>
+    <p class="publication-venue">
+      {[item.venue, item.conference, item.year].filter(Boolean).join(" · ")}
+      {item.status === "accepted" && <span> · Accepted</span>}
+    </p>
+    {item.citation && <p class="publication-citation">{item.citation}</p>}
+  </div>
+  <ul class="publication-links">
+    {item.doi && <li><a href={item.doi}>DOI ↗</a></li>}
+    {item.pdf && <li><a href={item.pdf}>PDF ↗</a></li>}
+    {item.projectUrl && <li><a href={item.projectUrl}>Project →</a></li>}
+    {item.externalUrl && <li><a href={item.externalUrl}>External ↗</a></li>}
+  </ul>
+</article>

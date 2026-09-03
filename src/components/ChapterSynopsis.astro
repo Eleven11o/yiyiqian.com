@@ -1,0 +1,88 @@
+---
+interface ChapterImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  width: number;
+  height: number;
+}
+
+interface Chapter {
+  number: string;
+  titleZh: string;
+  titleEn: string;
+  summaryZh: string[];
+  summaryEn: string[];
+  directorZh?: string;
+  directorEn?: string;
+  imageSlots: number;
+  images: ChapterImage[];
+}
+
+interface Props {
+  chapters: Chapter[];
+}
+
+const { chapters } = Astro.props;
+const slotsFor = (chapter: Chapter) =>
+  Array.from({ length: Math.max(chapter.imageSlots, chapter.images.length) });
+---
+
+<section class="chapter-synopsis" aria-labelledby="chapter-synopsis-title">
+  <header class="chapter-synopsis-heading">
+    <p class="section-kicker">Story structure</p>
+    <h2 id="chapter-synopsis-title">
+      Chapter synopsis
+      <span lang="zh-Hans">章节梗概</span>
+    </h2>
+  </header>
+
+  <div class="chapter-synopsis-list">
+    {chapters.map((chapter) => (
+      <article class="chapter-entry">
+        <header class="chapter-entry-heading">
+          <p>{chapter.number}</p>
+          <h3>
+            <span lang="zh-Hans">《{chapter.titleZh}》</span>
+            <span>{chapter.titleEn}</span>
+          </h3>
+        </header>
+
+        <div class="chapter-copy">
+          <div lang="zh-Hans">
+            {chapter.summaryZh.map((paragraph) => <p>{paragraph}</p>)}
+            {chapter.directorZh && <p class="chapter-director">章节导演：{chapter.directorZh}</p>}
+          </div>
+          <div lang="en">
+            {chapter.summaryEn.map((paragraph) => <p>{paragraph}</p>)}
+            {chapter.directorEn && <p class="chapter-director">Chapter Director: {chapter.directorEn}</p>}
+          </div>
+        </div>
+
+        <div class="chapter-image-slots">
+          {slotsFor(chapter).map((_, imageIndex) => {
+            const image = chapter.images[imageIndex];
+            return image ? (
+              <figure class="chapter-image">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                {image.caption && <figcaption>{image.caption}</figcaption>}
+              </figure>
+            ) : (
+              <div class="chapter-image-placeholder" aria-label={`Reserved image position ${imageIndex + 1} for ${chapter.titleEn}`}>
+                <span>Image {String(imageIndex + 1).padStart(2, "0")}</span>
+                <p>Chapter still / production image</p>
+              </div>
+            );
+          })}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

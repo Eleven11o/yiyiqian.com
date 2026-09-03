@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PublicationItem from "../components/PublicationItem.astro";
+import publications from "../data/publications.json";
+
+type Publication = {
+  title: string;
+  authors: string[];
+  venue?: string;
+  conference?: string;
+  year?: number | string;
+  kind: "academic" | "creative";
+  status: "published" | "accepted" | "under-review";
+  doi?: string;
+  pdf?: string;
+  projectUrl?: string;
+  externalUrl?: string;
+  citation?: string;
+};
+
+const items = publications.items as Publication[];
+const groups = [
+  {
+    title: "Academic Publications",
+    description: "Published and accepted scholarly work.",
+    items: items.filter((item) => item.kind === "academic" && ["published", "accepted"].includes(item.status)),
+  },
+  {
+    title: "Creative Research Outputs",
+    description: "Practice-based research works, documented prototypes, and verified creative outputs.",
+    items: items.filter((item) => item.kind === "creative" && item.status !== "under-review"),
+  },
+  {
+    title: "Under Review",
+    description: "Current submissions. Details will only be listed when appropriate for public disclosure.",
+    items: items.filter((item) => item.status === "under-review"),
+  },
+].filter((group) => group.items.length > 0);
+---
+
+<BaseLayout title="Publications — Yiyi Qian" description="Published academic work by Yiyi Qian.">
+  <header class="page-header shell">
+    <p class="section-kicker">Research archive</p>
+    <h1>Publications</h1>
+    <p class="page-intro">Published academic work across immersive media, interaction design, and spatial narrative.</p>
+  </header>
+
+  <div class="publication-groups shell">
+    {groups.map((group, groupIndex) => (
+      <section class="publication-group" aria-labelledby={`publication-group-${groupIndex}`}>
+        <header>
+          <p>{String(groupIndex + 1).padStart(2, "0")}</p>
+          <div>
+            <h2 id={`publication-group-${groupIndex}`}>{group.title}</h2>
+            <p>{group.description}</p>
+          </div>
+        </header>
+        {group.items.length > 0 ? (
+          <div>{group.items.map((item, index) => <PublicationItem item={item} index={index} />)}</div>
+        ) : (
+          <p class="empty-state">No verified entries have been supplied yet.</p>
+        )}
+      </section>
+    ))}
+  </div>
+</BaseLayout>

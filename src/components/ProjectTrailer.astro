@@ -1,0 +1,28 @@
+---
+interface LocalVideo {
+  src: string;
+  title: string;
+  poster?: string;
+  caption?: string;
+}
+
+interface Props {
+  video: LocalVideo;
+}
+
+const { video } = Astro.props;
+---
+
+<figure class="project-video project-trailer">
+  <div class="project-video-frame">
+    <video controls preload="metadata" playsinline poster={video.poster} aria-label={video.title}>
+      <source src={video.src} type="video/mp4" />
+      Your browser does not support embedded video.
+    </video>
+  </div>
+  <figcaption>
+    <span>{video.caption ?? video.title}</span>
+    <span>Trailer · 预告片</span>
+  </figcaption>
+</figure>
+

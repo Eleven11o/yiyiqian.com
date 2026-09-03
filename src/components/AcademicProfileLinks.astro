@@ -1,0 +1,22 @@
+---
+import { profile } from "../data/profile";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const links = [
+  profile.googleScholar && { label: "Google Scholar", href: profile.googleScholar },
+  profile.orcid && { label: "ORCID", href: profile.orcid },
+  profile.linkedin && { label: "LinkedIn", href: profile.linkedin },
+].filter(Boolean) as Array<{ label: string; href: string }>;
+---
+
+{links.length > 0 && (
+  <ul class:list={["academic-links", { compact }]}>
+    {links.map((item) => (
+      <li><a href={item.href} rel="me noreferrer">{item.label} ↗</a></li>
+    ))}
+  </ul>
+)}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">The Enigma of the Divine Capital image placeholder</title>
+  <desc id="desc">A restrained architectural abstraction to be replaced with verified artwork</desc>
+  <rect width="1600" height="1000" fill="#c6bbb0"/>
+  <path d="M180 100h1240v800H180z" fill="none" stroke="#282522" stroke-width="2"/>
+  <path d="M180 100 800 500 1420 100M180 900 800 500l620 400M800 100v800" fill="none" stroke="#282522" stroke-width="1" opacity=".55"/>
+  <circle cx="800" cy="500" r="145" fill="#6b332b" opacity=".75"/>
+  <text x="75" y="80" font-family="Arial, sans-serif" font-size="20" letter-spacing="4" fill="#282522">THE ENIGMA OF THE DIVINE CAPITAL</text>
+</svg>

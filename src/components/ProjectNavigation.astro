@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  previous?: CollectionEntry<"projects">;
+  next?: CollectionEntry<"projects">;
+}
+
+const { previous, next } = Astro.props;
+---
+
+<nav class="project-navigation shell" aria-label="Project navigation">
+  <div>
+    {previous && (
+      <a href={`/works/${previous.id}/`}>
+        <span>Previous project</span>
+        <strong>← {previous.data.title}</strong>
+      </a>
+    )}
+  </div>
+  <div>
+    {next && (
+      <a href={`/works/${next.id}/`}>
+        <span>Next project</span>
+        <strong>{next.data.title} →</strong>
+      </a>
+    )}
+  </div>
+</nav>

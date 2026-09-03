@@ -1,0 +1,48 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+const rows = [
+  { label: "Year", value: [String(data.year)] },
+  { label: "Type", value: [data.category] },
+  { label: "Role", value: data.role },
+  { label: "Tools / Medium", value: data.medium },
+  { label: "Research area", value: data.researchAreas },
+].filter((row) => row.value.length > 0);
+---
+
+<section class="legacy-project-body">
+  <div class="legacy-project-inner shell">
+    <header class="legacy-project-record">
+      <p class="section-kicker">Earlier portfolio archive</p>
+      <dl>
+        {rows.map((row) => (
+          <div>
+            <dt>{row.label}</dt>
+            <dd>{row.value.join(" / ")}</dd>
+          </div>
+        ))}
+      </dl>
+      {data.tags.length > 0 && (
+        <ul class="legacy-tag-list" aria-label="Project topics">
+          {data.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      )}
+      {data.sourceUrl && (
+        <a class="legacy-source-link" href={data.sourceUrl} rel="noreferrer">
+          Original Wix archive ↗
+        </a>
+      )}
+    </header>
+
+    <div class="legacy-project-story">
+      <Content />
+    </div>
+  </div>
+</section>

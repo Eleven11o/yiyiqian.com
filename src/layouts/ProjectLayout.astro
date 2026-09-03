@@ -1,0 +1,166 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import ChapterSynopsis from "../components/ChapterSynopsis.astro";
+import LegacyProjectStory from "../components/LegacyProjectStory.astro";
+import MediaGallery from "../components/MediaGallery.astro";
+import ProjectHero from "../components/ProjectHero.astro";
+import ProjectLaurels from "../components/ProjectLaurels.astro";
+import ProjectMetadata from "../components/ProjectMetadata.astro";
+import ProjectNarrativeSection from "../components/ProjectNarrativeSection.astro";
+import ProjectNavigation from "../components/ProjectNavigation.astro";
+import ProjectRichStory from "../components/ProjectRichStory.astro";
+import ProjectTeam from "../components/ProjectTeam.astro";
+import ProjectTrailer from "../components/ProjectTrailer.astro";
+import ProjectVideo from "../components/ProjectVideo.astro";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  previous?: CollectionEntry<"projects">;
+  next?: CollectionEntry<"projects">;
+}
+
+const { project, previous, next } = Astro.props;
+const { data } = project;
+const pageTitle = `${data.title} — Yiyi Qian`;
+---
+
+<BaseLayout title={pageTitle} description={data.description} image={data.cover}>
+  <article class:list={["project-case-study", `project-${project.id}`, { "legacy-project": data.legacyTheme }, data.legacyTheme && `legacy-theme-${data.legacyTheme.replace("wix-", "")}`]}>
+    <ProjectHero project={project} />
+
+    {data.legacyTheme ? (
+      <LegacyProjectStory project={project} />
+    ) : (
+      <div class="project-body shell">
+      <ProjectMetadata project={project} />
+
+      <div class="project-story">
+        {data.trailer && <ProjectTrailer video={data.trailer} />}
+
+        {data.externalMedia?.length && (
+          <nav class="project-watch" aria-label="Project viewing links">
+            {data.externalMedia.map((item) => (
+              <a href={item.url} rel="noreferrer">
+                <span class="section-kicker">Film screener</span>
+                <strong>{item.label}</strong>
+                <span class="project-watch-arrow" aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </nav>
+        )}
+
+        <ProjectNarrativeSection number="01" label="Artwork / Experience" title="The experience">
+          <p>{data.experience}</p>
+        </ProjectNarrativeSection>
+
+        {data.featuredVideo && <ProjectVideo video={data.featuredVideo} />}
+        {data.storyMode && <ProjectRichStory project={project} />}
+
+        {!data.storyMode && (
+          <>
+
+        {data.context && (
+          <ProjectNarrativeSection label="Context" title="Context and motivation">
+            <p>{data.context}</p>
+          </ProjectNarrativeSection>
+        )}
+
+        {data.personalContribution?.length > 0 && (
+          <ProjectNarrativeSection label="Personal Contribution" title="Yiyi Qian’s contribution">
+            <div class="personal-contribution-copy">
+              {data.personalContribution.map((paragraph) => <p>{paragraph}</p>)}
+              {data.personalContributionSource && (
+                <p class="personal-contribution-source">
+                  Source: <a href={data.personalContributionSource.url} rel="noreferrer">{data.personalContributionSource.label} ↗</a>
+                </p>
+              )}
+            </div>
+          </ProjectNarrativeSection>
+        )}
+
+        {data.gallery.length > 0 && <MediaGallery items={data.gallery.slice(0, 1)} />}
+
+        {data.chapterSynopsis.length > 0 && <ChapterSynopsis chapters={data.chapterSynopsis} />}
+
+        {data.researchQuestion && (
+          <ProjectNarrativeSection number="02" label="Research Question" title="Question emerging from practice" emphasis>
+            <p>{data.researchQuestion}</p>
+          </ProjectNarrativeSection>
+        )}
+
+        {data.creativeProcess && (
+          <ProjectNarrativeSection number="03" label="Creative Process" title="Making and inquiry">
+            <p>{data.creativeProcess}</p>
+          </ProjectNarrativeSection>
+        )}
+
+        {data.designProduction && (
+          <ProjectNarrativeSection label="Design / Production" title="Design and production">
+            <p>{data.designProduction}</p>
+          </ProjectNarrativeSection>
+        )}
+
+        {data.researchMethod && (
+          <ProjectNarrativeSection label="Research Method" title="Method">
+            <p>{data.researchMethod}</p>
+          </ProjectNarrativeSection>
+        )}
+
+        {data.gallery.length > 1 && <MediaGallery items={data.gallery.slice(1)} />}
+
+        {data.reflection && (
+          <ProjectNarrativeSection number="04" label="Reflection / Outcome" title="Reflection">
+            <p>{data.reflection}</p>
+          </ProjectNarrativeSection>
+        )}
+
+        {data.outcome && (
+          <ProjectNarrativeSection label="Outcome" title="Outcome">
+            <p>{data.outcome}</p>
+          </ProjectNarrativeSection>
+        )}
+          </>
+        )}
+
+        {(data.exhibitions?.length || data.awards?.length || data.publications?.length || data.credits?.length || data.laurels.length || data.team.length) && (
+          <section class="project-record" aria-labelledby="project-record-title">
+            <p class="section-kicker">Project record</p>
+            <h2 id="project-record-title">Credits and references</h2>
+            <div class="record-grid">
+              {data.exhibitions?.length && (
+                <div>
+                  <h3>Exhibitions</h3>
+                  <ul>{data.exhibitions.map((item) => <li>{item}</li>)}</ul>
+                </div>
+              )}
+              {data.awards?.length && (
+                <div>
+                  <h3>Awards / Selections</h3>
+                  <ul>{data.awards.map((item) => <li>{item}</li>)}</ul>
+                </div>
+              )}
+              {data.publications?.length && (
+                <div>
+                  <h3>Publications</h3>
+                  <ul>{data.publications.map((item) => <li>{item}</li>)}</ul>
+                </div>
+              )}
+              {data.credits?.length && (
+                <div>
+                  <h3>Credits</h3>
+                  <ul>{data.credits.map((item) => <li>{item}</li>)}</ul>
+                </div>
+              )}
+            </div>
+            {data.laurels.length > 0 && <ProjectLaurels items={data.laurels} />}
+            {data.team.length > 0 && <ProjectTeam items={data.team} />}
+          </section>
+        )}
+        </div>
+      </div>
+    )}
+
+    <ProjectNavigation previous={previous} next={next} />
+  </article>
+</BaseLayout>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Resonance project image placeholder</title>
+  <desc id="desc">A restrained waveform abstraction to be replaced with verified installation imagery</desc>
+  <rect width="1600" height="1000" fill="#17191d"/>
+  <g fill="none" stroke="#d5d6d0" opacity=".75">
+    <path d="M0 500c120 0 120-320 240-320s120 640 240 640 120-510 240-510 120 380 240 380 120-250 240-250 120 120 240 120 120-60 200-60" stroke-width="2"/>
+    <path d="M0 500c120 0 120-220 240-220s120 440 240 440 120-350 240-350 120 260 240 260 120-170 240-170 120 80 240 80 120-40 200-40" opacity=".4"/>
+  </g>
+  <text x="72" y="90" font-family="Arial, sans-serif" font-size="22" letter-spacing="7" fill="#d5d6d0">RESONANCE</text>
+  <text x="72" y="930" font-family="Arial, sans-serif" font-size="18" fill="#858891">INSTALLATION IMAGE PLACEHOLDER</text>
+</svg>

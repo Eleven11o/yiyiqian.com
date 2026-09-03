@@ -1,0 +1,34 @@
+---
+import { navigation } from "../data/site";
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(href) && href !== "/";
+---
+
+<header class="site-header">
+  <div class="header-inner shell">
+    <a class="wordmark" href="/" aria-label="Yiyi Qian, home">
+      <span>Yiyi Qian</span>
+      <small>Artist + XR/HCI Researcher</small>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <ul>
+        {navigation.map((item) => (
+          <li><a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <details class="mobile-menu">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile navigation">
+        <ul>
+          {navigation.map((item) => (
+            <li><a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>{item.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

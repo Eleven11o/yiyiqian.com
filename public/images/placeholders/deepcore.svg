@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Deepcore project image placeholder</title>
+  <desc id="desc">A restrained abstract image to be replaced with verified artwork</desc>
+  <rect width="1600" height="1000" fill="#29332e"/>
+  <circle cx="1130" cy="430" r="330" fill="none" stroke="#93a193" stroke-width="2" opacity=".55"/>
+  <circle cx="1130" cy="430" r="215" fill="none" stroke="#93a193" stroke-width="1" opacity=".35"/>
+  <path d="M0 758c334-169 635-205 903-109 247 89 480 81 697-22v373H0z" fill="#151b18"/>
+  <text x="80" y="108" font-family="Arial, sans-serif" font-size="24" letter-spacing="7" fill="#e1dfd7">DEEP / CORE</text>
+  <text x="80" y="922" font-family="Arial, sans-serif" font-size="18" fill="#93a193">IMAGE PLACEHOLDER — REPLACE WITH PROJECT ARTWORK</text>
+</svg>

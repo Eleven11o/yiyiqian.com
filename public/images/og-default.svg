@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Yiyi Qian</title>
+  <desc id="desc">Artist and XR/HCI Researcher portfolio</desc>
+  <rect width="1200" height="630" fill="#f4f2ed"/>
+  <path d="M64 64h1072M64 566h1072" stroke="#151515" stroke-width="2"/>
+  <text x="64" y="330" font-family="Arial, sans-serif" font-size="150" letter-spacing="-8" fill="#151515">YIYI QIAN</text>
+  <text x="69" y="395" font-family="Arial, sans-serif" font-size="30" fill="#6d6a64">ARTIST + XR/HCI RESEARCHER</text>
+</svg>

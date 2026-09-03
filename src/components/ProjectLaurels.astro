@@ -1,0 +1,29 @@
+---
+interface Laurel {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  items: Laurel[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="festival-laurels-grid" role="list" aria-label="Festival laurels">
+  {items.map((item) => (
+    <figure class="festival-laurel-item" role="listitem">
+      <img
+        src={item.src}
+        alt={item.alt}
+        width={item.width}
+        height={item.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  ))}
+</div>

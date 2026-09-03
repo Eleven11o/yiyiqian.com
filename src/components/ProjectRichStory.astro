@@ -1,0 +1,15 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<div class="project-rich-story">
+  <Content />
+</div>
+

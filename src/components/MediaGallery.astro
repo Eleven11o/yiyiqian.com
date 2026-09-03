@@ -1,0 +1,25 @@
+---
+interface MediaItem {
+  src: string;
+  alt: string;
+  caption?: string;
+  layout: "wide" | "portrait" | "grid";
+  width: number;
+  height: number;
+}
+
+interface Props {
+  items: MediaItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="media-gallery">
+  {items.map((item) => (
+    <figure class:list={["media-item", `media-${item.layout}`]}>
+      <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" />
+      {item.caption && <figcaption>{item.caption}</figcaption>}
+    </figure>
+  ))}
+</div>

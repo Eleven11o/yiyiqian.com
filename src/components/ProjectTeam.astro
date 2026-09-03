@@ -1,0 +1,31 @@
+---
+interface TeamCredit {
+  role: string;
+  members: string[];
+}
+
+interface Props {
+  items: TeamCredit[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="project-team" aria-labelledby="project-team-title">
+  <h3 id="project-team-title">The team</h3>
+  <dl class="project-team-list" lang="en">
+    {items.map((item) => (
+      <div>
+        <dt>{item.role}</dt>
+        <dd>
+          {item.members.map((member, index) => (
+            <>
+              {index > 0 && ", "}
+              {member === "Yiyi Qian" ? <strong class="project-team-self">{member}</strong> : member}
+            </>
+          ))}
+        </dd>
+      </div>
+    ))}
+  </dl>
+</section>
