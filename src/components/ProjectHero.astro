@@ -25,5 +25,5 @@ const { data } = project;
       fetchpriority="high"
     />
   </figure>
-  <p class="project-deck">{data.description}</p>
+  {data.description && <p class="project-deck">{data.description}</p>}
 </header>

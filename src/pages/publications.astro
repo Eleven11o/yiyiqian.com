@@ -39,22 +39,27 @@ const groups = [
 ---
 
 <BaseLayout title="Publications — Yiyi Qian" description="Published academic work by Yiyi Qian.">
-  <header class="page-header shell">
+  <header class="page-header publication-page-header shell">
     <p class="section-kicker">Research archive</p>
     <h1>Publications</h1>
-    <p class="page-intro">Published academic work across immersive media, interaction design, and spatial narrative.</p>
   </header>
 
   <div class="publication-groups shell">
     {groups.map((group, groupIndex) => (
-      <section class="publication-group" aria-labelledby={`publication-group-${groupIndex}`}>
-        <header>
-          <p>{String(groupIndex + 1).padStart(2, "0")}</p>
-          <div>
-            <h2 id={`publication-group-${groupIndex}`}>{group.title}</h2>
-            <p>{group.description}</p>
-          </div>
-        </header>
+      <section
+        class="publication-group"
+        aria-label={groups.length === 1 ? "Publication list" : undefined}
+        aria-labelledby={groups.length > 1 ? `publication-group-${groupIndex}` : undefined}
+      >
+        {groups.length > 1 && (
+          <header>
+            <p>{String(groupIndex + 1).padStart(2, "0")}</p>
+            <div>
+              <h2 id={`publication-group-${groupIndex}`}>{group.title}</h2>
+              <p>{group.description}</p>
+            </div>
+          </header>
+        )}
         {group.items.length > 0 ? (
           <div>{group.items.map((item, index) => <PublicationItem item={item} index={index} />)}</div>
         ) : (

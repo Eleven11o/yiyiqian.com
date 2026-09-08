@@ -6,12 +6,75 @@ import { profile } from "../data/profile";
 const about = await getEntry("pages", "about");
 if (!about || about.data.pageType !== "about") throw new Error("About page content is missing.");
 
-const lists = [
-  ["Education", about.data.education],
-  ["Selected awards", about.data.awards],
-  ["Exhibitions", about.data.exhibitions],
-  ["Academic / creative experience", about.data.experience],
-  ["Skills", about.data.skills],
+const honors = [
+  ["2020", "Zhejiang Provincial Government Scholarship"],
+  ["2021", "First-Class University Scholarship, China Academy of Art"],
+  ["2022", "First-Class University Scholarship, China Academy of Art"],
+  ["2022", "Top 100 Emerging Designers in Asia"],
+  ["2022", "Xia Peng (Yao Fu) Scholarship"],
+  ["2023", "First-Class University Scholarship, China Academy of Art"],
+  ["2024", "Outstanding Graduate of Zhejiang Province"],
+  ["2024", "Outstanding Graduate of China Academy of Art"],
+  ["2024", "National Scholarship for Graduate Students"],
+  ["2025", "Zhejiang Provincial Government Scholarship"],
+] as const;
+
+const deepcoreAwards = [
+  ["Aug 2026", "Animaze — Montreal International Animation Film Festival — Official Selection", "Montreal, Canada"],
+  ["Jun 2026", "2026 WSXA Paris International Film Festival — Finalist", "Paris, France"],
+  ["Apr 2026", "The Buddha International Film Festival — Best Virtual Reality Video", "India"],
+  ["Feb 2026", "Independent Days International Filmfest — Official Selection", "Karlsruhe, Germany"],
+  ["Jan 2026", "Global Film Festival Awards — Best Virtual Reality 360", "Los Angeles, USA"],
+  ["Jan 2026", "Global Film Festival Awards — Best Visual Effects", "Los Angeles, USA"],
+  ["Dec 2025", "Tianjin International Academic Film Festival — Official Selection", "Tianjin, China"],
+  ["Nov 2025", "4th Golden Rooster XR Film Festival (2025 China Golden Rooster and Hundred Flowers Film Festival) — Official Selection", "Xiamen, China"],
+  ["Oct 2025", "17th Xiamen International Animation Festival — Gold Award, Virtual Reality Category", "Xiamen, China"],
+  ["Oct 2025", "17th Xiamen International Animation Festival — Best Education Award", "Xiamen, China"],
+  ["Oct 2025", "VR FEST MX — Official Selection", "Mexico"],
+  ["Sep 2025", "Cannes World Film Festival — Best Virtual Reality (Short)", "Cannes, France"],
+  ["Mar 2025", "Hollywood Shortsfest — Honorable Mention", "Hollywood, USA"],
+] as const;
+
+const deepcoreExhibitions = [
+  ["Jul 2026", "Dunhuang Summer Art Season", "Dunhuang, China"],
+  ["May 2026", "2026 World Digital Education Conference", "Zhejiang, China"],
+  ["May 2026", "2026 Hengqin–Macao International Digital Art Expo", "Zhuhai, China"],
+  ["Apr 2026", "Archives of Possible Worlds: 2026 International Art and Technology Exhibition", "Beijing National Stadium, China"],
+  ["Nov 2025", "Hong Kong International AI Art Festival", "Hong Kong, China"],
+  ["Nov 2025", "16th China Film Science and Technology Forum", "Hainan, China"],
+  ["Oct 2025", "Light and Shadow Dome Digital Art Exhibition", "Beijing, China"],
+  ["Oct 2025", "Hangzhou International Buddhist Cultural Exchange Center", "Hangzhou, China"],
+  ["Oct 2025", "19th Hangzhou Cultural and Creative Industry Expo", "Hangzhou, China"],
+  ["Oct 2025", "4th CDSA International Media Art and Creative Design Competition Exhibition", "Milan, Italy"],
+  ["Oct 2025", "Beijing Biennale — Digital Art Special Exhibition", "Beijing, China"],
+  ["Jul 2025", "Shanghai Dunhuang Contemporary Art Museum", "Shanghai, China"],
+] as const;
+
+const exhibitionGroups = [
+  {
+    project: "Resonance",
+    detail: "Interactive experiential environment · 2024",
+    rows: [
+      ["Oct 2024", "2024 HONOR Talents Global Design Awards", "—"],
+      ["Jun 2024", "China Academy of Art Graduation Exhibition", "Hangzhou"],
+    ],
+  },
+  {
+    project: "Lakṣana",
+    detail: "Digital video · Sep–Dec 2022",
+    rows: [
+      ["Oct 2024", "The 14th National Exhibition of Fine Arts — Digital Art Exhibition", "Shanghai"],
+      ["29 May–4 Jun 2023", "2023 China Science Fiction Conference", "Shougang Park, Beijing"],
+      ["12 Feb–12 Apr 2023", "The 1st Shanghai Digital Art International Expo (SDAF)", "Wang Xiaohui Art Museum, Shanghai"],
+    ],
+  },
+] as const;
+
+const curatorialExperience = [
+  ["17–20 Oct 2025", "19th Hangzhou Cultural and Creative Industry Expo", "Hangzhou, China", "Curatorial Assistant"],
+  ["Dec 2024", "The 14th National Exhibition of Fine Arts (Beijing Exhibition) — Digital Art and Animation Section", "Beijing, China", "Curatorial Design and Exhibition Production"],
+  ["Oct 2024", "1st China Digital Art Exhibition", "Hangzhou, China", "Curatorial Assistant"],
+  ["2024", "Maitreya Museum, 6th World Buddhist Forum", "Ningbo, China", "Curatorial Design and Exhibition Production"],
 ] as const;
 ---
 
@@ -27,20 +90,381 @@ const lists = [
       <p class="section-kicker">Biography</p>
       <h2 id="biography-title" class="visually-hidden">Biography</h2>
       <p>{about.data.biography}</p>
+
+      <div class="about-contact-links">
+        <a href={`mailto:${profile.email}`} class="about-contact-item">
+          <span class="about-contact-label">Email</span>
+          <span class="about-contact-value">{profile.email}</span>
+        </a>
+        <a href={profile.orcid} target="_blank" rel="noopener noreferrer" class="about-contact-item">
+          <span class="about-contact-label">ORCID</span>
+          <span class="about-contact-value">{profile.orcid.replace('https://', '')}</span>
+        </a>
+        <div class="about-contact-item about-contact-xiaohongshu">
+          <span class="about-contact-label">Xiaohongshu</span>
+          <img src="/images/profile/xiaohongshu-qr.png" alt="Xiaohongshu QR Code" class="about-contact-qr" />
+        </div>
+      </div>
     </section>
 
     <aside class="about-interests">
+      <figure class="about-portrait">
+        <img
+          src="/images/profile/yiyi-qian-portrait.jpg"
+          alt="Portrait of Yiyi Qian seated beside a brick wall holding lilies"
+          loading="eager"
+        />
+      </figure>
       <h2>Research interests</h2>
       <ul>{about.data.researchInterests.map((item) => <li>{item}</li>)}</ul>
     </aside>
   </div>
 
   <div class="profile-lists shell">
-    {lists.map(([title, items]) => (
-      <section>
-        <h2>{title}</h2>
-        <ul>{items.map((item) => <li>{item}</li>)}</ul>
-      </section>
-    ))}
+    <section>
+      <h2>Education</h2>
+      <ul>{about.data.education.map((item) => <li>{item}</li>)}</ul>
+    </section>
+    <section>
+      <h2>Honors &amp; Awards</h2>
+      <ul class="about-honors-list">
+        {honors.map(([year, honor]) => <li><time>{year}</time><span>{honor}</span></li>)}
+      </ul>
+    </section>
   </div>
+
+  <section class="about-records shell" aria-labelledby="about-records-title">
+    <header class="about-records-header">
+      <h2 id="about-records-title">Exhibitions and professional record</h2>
+    </header>
+
+    <section class="about-record-section" aria-label="Exhibition and award history">
+
+      <div class="about-project-record">
+        <h4><em>Deepcore: When Cave Breath</em></h4>
+        <p>Cinematic VR film · Production: Mar–Jul 2025</p>
+        <p class="about-record-subhead">Film festival awards and selections</p>
+        <div class="about-table-wrap">
+          <table class="about-record-table">
+            <thead><tr><th>Date</th><th>Festival / Award</th><th>Location</th></tr></thead>
+            <tbody>{deepcoreAwards.map(([date, title, location]) => <tr><td>{date}</td><td>{title}</td><td>{location}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <p class="about-record-subhead">Exhibitions</p>
+        <div class="about-table-wrap">
+          <table class="about-record-table">
+            <thead><tr><th>Date</th><th>Exhibition</th><th>Location</th></tr></thead>
+            <tbody>{deepcoreExhibitions.map(([date, title, location]) => <tr><td>{date}</td><td>{title}</td><td>{location}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </div>
+      {exhibitionGroups.map((group) => (
+        <div class="about-project-record">
+          <h4><em>{group.project}</em></h4>
+          <p>{group.detail}</p>
+          <div class="about-table-wrap">
+            <table class="about-record-table">
+              <thead><tr><th>Date</th><th>Exhibition / Award</th><th>Location</th></tr></thead>
+              <tbody>{group.rows.map(([date, title, location]) => <tr><td>{date}</td><td>{title}</td><td>{location}</td></tr>)}</tbody>
+            </table>
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section class="about-record-section" aria-labelledby="curatorial-experience-title">
+      <h3 id="curatorial-experience-title">Curatorial Experience</h3>
+      <div class="about-table-wrap">
+        <table class="about-record-table about-record-table--wide">
+          <thead><tr><th>Date</th><th>Exhibition</th><th>Location</th><th>Role</th></tr></thead>
+          <tbody>{curatorialExperience.map(([date, title, location, role]) => <tr><td>{date}</td><td>{title}</td><td>{location}</td><td>{role}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+  <section class="about-archive shell" aria-labelledby="about-archive-title">
+    <header class="about-archive-header">
+      <h2 id="about-archive-title">Selected moments</h2>
+    </header>
+
+    <div class="about-moments-grid">
+      <figure class="about-moment about-moment--friends">
+        <img src="/images/profile/archive/friends-2017.jpg" alt="Personal photograph with friends" width="1084" height="1444" loading="lazy" />
+        <figcaption>Best friends · 2017</figcaption>
+      </figure>
+      <figure class="about-moment">
+        <img src="/images/profile/archive/media-interaction-institute-01.jpg" alt="Photograph from the Institute of Media and Interaction at China Academy of Art" width="1920" height="1280" loading="lazy" />
+        <figcaption>Media and Interaction Research Institute · 2020–2024</figcaption>
+      </figure>
+      <figure class="about-moment">
+        <img src="/images/profile/archive/media-interaction-institute-02.jpg" alt="Photograph from Yiyi Qian’s years at the Institute of Media and Interaction" width="1920" height="1280" loading="lazy" />
+        <figcaption>Media and Interaction Research Institute · 2020–2024</figcaption>
+      </figure>
+      <figure class="about-moment">
+        <img src="/images/profile/archive/ai-center-01.jpg" alt="Photograph from the AI Center at China Academy of Art" width="1440" height="1080" loading="lazy" />
+        <figcaption>AI Center · 2024–Present</figcaption>
+      </figure>
+      <figure class="about-moment">
+        <img src="/images/profile/archive/ai-center-02.jpg" alt="Photograph from Yiyi Qian’s current work at the AI Center" width="4111" height="2316" loading="lazy" />
+        <figcaption>AI Center · 2024–Present</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="about-milestones shell" aria-labelledby="about-milestones-title">
+    <header class="about-archive-header about-milestones-header">
+      <h2 id="about-milestones-title">Work Journal</h2>
+    </header>
+
+    <div class="about-milestones-controls" aria-label="Work Journal navigation">
+      <span>Newest → Earlier</span>
+      <div class="about-milestones-arrows">
+        <button class="about-milestones-arrow" type="button" data-timeline-newer aria-controls="about-milestones-list" aria-label="View newer entries">←</button>
+        <button class="about-milestones-arrow" type="button" data-timeline-older aria-controls="about-milestones-list" aria-label="View earlier entries">→</button>
+      </div>
+    </div>
+
+    <ol id="about-milestones-list" class="about-milestones-grid" tabindex="0" aria-label="Work Journal, newest to oldest">
+      <li class="about-milestone">
+        <figure>
+          <img src="/images/profile/milestones/world-digital-education-conference-2026-05.jpg" alt="Yiyi Qian presenting at the World Digital Education Conference" width="1440" height="960" loading="lazy" />
+          <figcaption>
+            <time datetime="2026-05">May 2026</time>
+            <span>Presenting at the World Digital Education Conference.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--portrait about-milestone--feature">
+        <figure>
+          <div class="about-milestone-media">
+            <img src="/images/profile/milestones/hengqin-setup-2026-05.jpg" alt="Setting up the Deepcore exhibition at the Hengqin–Macao International Digital Art Expo" loading="lazy" />
+            <img src="/images/profile/milestones/hengqin-installation-2026-05.jpg" alt="Deepcore installation at the Hengqin–Macao International Digital Art Expo" loading="lazy" />
+            <img src="/images/profile/milestones/hengqin-lu-rongzhi-2026-05.jpg" alt="Yiyi Qian with Lu Rongzhi at the Hengqin–Macao International Digital Art Expo" loading="lazy" />
+          </div>
+          <figcaption>
+            <time datetime="2026-05">May 2026</time>
+            <span>Exhibiting <em>Deepcore: When Cave Breath</em> at the Hengqin–Macao International Digital Art Expo—installing the work with Zirui Huang and meeting curator Lu Rongzhi.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--portrait about-milestone--feature">
+        <figure>
+          <img src="/images/profile/milestones/hengqin-yang-lan-2026-clean.png" alt="Yiyi Qian introducing Deepcore to Yang Lan at the Hengqin–Macao International Digital Art Expo" width="1152" height="1536" loading="lazy" />
+          <figcaption>
+            <time datetime="2026-05">May 2026</time>
+            <span>Introducing <em>Deepcore: When Cave Breath</em> to Yang Lan at the Hengqin–Macao International Digital Art Expo.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--portrait about-milestone--feature">
+        <figure>
+          <div class="about-milestone-media">
+            <img src="/images/profile/milestones/hong-kong-festival-01-2025-12-19.jpg" alt="Yiyi Qian holding event badges at the Hong Kong International AI Art Festival" width="1080" height="1620" loading="lazy" />
+            <img src="/images/profile/milestones/hong-kong-festival-02-2025-12-19.jpg" alt="Yiyi Qian interacting with an illuminated installation at the Hong Kong International AI Art Festival" width="920" height="1280" loading="lazy" />
+            <img src="/images/profile/milestones/hong-kong-ai-art-festival-installation-2025-12-19.jpg" alt="Deepcore exhibition installation at the Hong Kong International AI Art Festival" loading="lazy" />
+          </div>
+          <figcaption>
+            <time datetime="2025-12-19">19 Dec 2025</time>
+            <span>Exhibition setup at the Hong Kong International AI Art Festival with Guijie Ding.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--portrait about-milestone--poster">
+        <figure>
+          <img src="/images/profile/milestones/siggraph-asia-poster-2025-corrected.png" alt="Yiyi Qian’s first SIGGRAPH Asia poster on display in Hong Kong" width="942" height="1536" loading="lazy" />
+          <figcaption>
+            <time datetime="2025-12">Dec 2025</time>
+            <span>My first SIGGRAPH Asia poster, presented in Hong Kong.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--portrait">
+        <figure>
+          <img src="/images/profile/milestones/ichec-singapore-2025-11-22.jpg" alt="Yiyi Qian’s ICHEC 2025 research poster and conference badge in Singapore" width="1080" height="1440" loading="lazy" />
+          <figcaption>
+            <time datetime="2025-11-22">22 Nov 2025</time>
+            <span>Presenting my first full paper at ICHEC, Singapore.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--feature">
+        <figure>
+          <div class="about-milestone-media">
+            <img src="/images/profile/milestones/cyber-sousa-award-2025-10-31.jpg" alt="Award recipients on stage at the 2025 Cyber Sousa Award ceremony" width="1620" height="1080" loading="lazy" />
+            <img src="/images/profile/milestones/cyber-sousa-award-certificate-2025-10-31.jpg" alt="Cyber Sousa gold award trophy and certificate for Deepcore" loading="lazy" />
+          </div>
+          <figcaption>
+            <time datetime="2025-10-31">31 Oct 2025</time>
+            <span>Receiving the Cyber Sousa Gold Award for <em>Deepcore: When Cave Breath</em>.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone">
+        <figure>
+          <img src="/images/profile/milestones/ai-center-beijing-2025-10.jpg" alt="Yiyi Qian with Professor Chen Yan and members of the AI Center in Beijing" loading="lazy" />
+          <figcaption>
+            <time datetime="2025-10">Oct 2025</time>
+            <span>AI Center in Beijing, with Professor Chen Yan, Director of the AI Center.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--portrait">
+        <figure>
+          <img src="/images/profile/milestones/unreal-fest-shanghai-2025-08.jpg" alt="Yiyi Qian at Unreal Fest Shanghai 2025" loading="lazy" />
+          <figcaption>
+            <time datetime="2025-08">Aug 2025</time>
+            <span>Unreal Fest Shanghai 2025.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--feature">
+        <figure>
+          <div class="about-milestone-media">
+            <img src="/images/profile/milestones/deepcore-shanghai-2025-07-19.jpg" alt="Project team at the first public presentation of Deepcore in Shanghai" width="1440" height="1080" loading="lazy" />
+            <img src="/images/profile/milestones/deepcore-shanghai-headsets-2025-07-19.jpg" alt="VR headsets prepared for the first public presentation of Deepcore in Shanghai" loading="lazy" />
+            <img src="/images/profile/milestones/deepcore-shanghai-installation-2025-07-19.jpg" alt="Yiyi Qian at the first public presentation of Deepcore in Shanghai" loading="lazy" />
+          </div>
+          <figcaption>
+            <time datetime="2025-07-19">19 Jul 2025</time>
+            <span><em>Deepcore: When Cave Breath</em> presented publicly for the first time at Dunhuang Contemporary Art Museum, Shanghai.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--feature">
+        <figure>
+          <div class="about-milestone-media">
+            <img src="/images/profile/milestones/ai-digital-art-course-01-2025-03-06.jpeg" alt="Course material on media evolution for Artificial Intelligence and Digital Art" loading="lazy" />
+            <img src="/images/profile/milestones/ai-digital-art-course-02-2025-03-06.jpeg" alt="Course material on digital performance for Artificial Intelligence and Digital Art" loading="lazy" />
+            <img src="/images/profile/milestones/ai-digital-art-course-03-2025-03-06.jpeg" alt="Course material on digital art ontology for Artificial Intelligence and Digital Art" loading="lazy" />
+          </div>
+          <figcaption>
+            <time datetime="2025-03">Mar–Jun 2025</time>
+            <span>Contributing to the development of <em>Artificial Intelligence and Digital Art</em>, a Zhejiang Provincial First-Class Online Course.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--feature">
+        <figure>
+          <div class="about-milestone-media">
+            <img src="/images/profile/milestones/mingshan-shengying-ningbo-2025-04.png" alt="Mingshan Shengying installed at Maitreya Museum in Ningbo" loading="lazy" />
+            <img src="/images/profile/milestones/mingshan-night-work-2025-04.jpg" alt="Late-night production work for Mingshan Shengying at Maitreya Museum" loading="lazy" />
+          </div>
+          <figcaption>
+            <time datetime="2025-04">Apr 2025</time>
+            <span>Creating <em>Mingshan Shengying</em> at Maitreya Museum, Ningbo, during late-night production with Wenzhe Zheng and Zhen Yu.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone">
+        <figure>
+          <img src="/images/profile/milestones/national-scholarship-2024-12.jpg" alt="Recipients of the 2023–2024 National Scholarship for Graduate Students at China Academy of Art" loading="lazy" />
+          <figcaption>
+            <time datetime="2024-12">Dec 2024</time>
+            <span>Receiving the National Scholarship for Graduate Students.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone">
+        <figure>
+          <img src="/images/profile/milestones/national-art-exhibition-curatorial-2024-09.png" alt="Animation and Digital Art Section of the 14th National Exhibition of Fine Arts in Beijing" width="3264" height="2016" loading="lazy" />
+          <figcaption>
+            <time datetime="2024-09">Sep 2024</time>
+            <span>Contributing to the curation of the 14th National Exhibition of Fine Arts — Animation and Digital Art Section, National Museum of China, Beijing.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--feature">
+        <figure>
+          <div class="about-milestone-media">
+            <img src="/images/profile/milestones/human-machine-resonance-01-2024-07.jpg" alt="Poster for the Human–Machine Resonance exhibition in Shanghai" loading="lazy" />
+            <img src="/images/profile/milestones/human-machine-resonance-02-2024-07.jpg" alt="Participants at the Human–Machine Resonance exhibition in Shanghai" loading="lazy" />
+            <img src="/images/profile/milestones/human-machine-resonance-03-2024-07.jpg" alt="Yiyi Qian speaking at the Human–Machine Resonance exhibition in Shanghai" loading="lazy" />
+          </div>
+          <figcaption>
+            <time datetime="2024-07">Jul 2024</time>
+            <span>Human–Machine Resonance exhibition, Shanghai.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone">
+        <figure>
+          <img src="/images/profile/milestones/zhejiang-tv-resonance-2024-06.jpg" alt="Yiyi Qian and Liu Yu during a Zhejiang Television interview about Resonance" loading="lazy" />
+          <figcaption>
+            <time datetime="2024-06">Jun 2024</time>
+            <span>Zhejiang Television interview about <em>Resonance</em>, with Liu Yu.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--stage">
+        <figure>
+          <img src="/images/profile/milestones/graduation-talk-2024-06-09.jpg" alt="Yiyi Qian presenting her graduation project on stage at China Academy of Art" width="2341" height="1080" loading="lazy" />
+          <figcaption>
+            <time datetime="2024-06-09">09 Jun 2024</time>
+            <span>Presenting my graduation project at “Three Nights Under the Tree,” China Academy of Art.</span>
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="about-milestone about-milestone--feature">
+        <figure>
+          <div class="about-milestone-media">
+            <img src="/images/profile/milestones/china-digital-art-exhibition-01-2024-04.jpg" alt="Yiyi Qian at the inaugural China Digital Art Exhibition in Hangzhou" loading="lazy" />
+            <img src="/images/profile/milestones/china-digital-art-exhibition-02-2024-04.jpg" alt="Curatorial team of the inaugural China Digital Art Exhibition" loading="lazy" />
+          </div>
+          <figcaption>
+            <time datetime="2024-04">Apr 2024</time>
+            <span>Curatorial assistant for the inaugural China Digital Art Exhibition, Hangzhou.</span>
+          </figcaption>
+        </figure>
+      </li>
+    </ol>
+
+    <script>
+      const timeline = document.getElementById('about-milestones-list');
+      const newerButton = document.querySelector('[data-timeline-newer]');
+      const olderButton = document.querySelector('[data-timeline-older]');
+
+      if (timeline instanceof HTMLElement && newerButton instanceof HTMLButtonElement && olderButton instanceof HTMLButtonElement) {
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const updateControls = () => {
+          const maximumScroll = Math.max(0, timeline.scrollWidth - timeline.clientWidth);
+          newerButton.disabled = timeline.scrollLeft <= 2;
+          olderButton.disabled = timeline.scrollLeft >= maximumScroll - 2;
+        };
+        const moveTimeline = (direction: number) => {
+          timeline.scrollBy({
+            left: direction * Math.max(220, timeline.clientWidth * 0.72),
+            behavior: reducedMotion ? 'auto' : 'smooth',
+          });
+        };
+
+        newerButton.addEventListener('click', () => moveTimeline(-1));
+        olderButton.addEventListener('click', () => moveTimeline(1));
+        timeline.addEventListener('scroll', updateControls, { passive: true });
+        window.addEventListener('resize', updateControls);
+        updateControls();
+      }
+    </script>
+  </section>
 </BaseLayout>
+
+
+
+

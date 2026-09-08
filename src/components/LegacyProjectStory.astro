@@ -1,5 +1,7 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
+import ProjectMetadata from "./ProjectMetadata.astro";
+import ProjectTeam from "./ProjectTeam.astro";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -8,41 +10,106 @@ interface Props {
 const { project } = Astro.props;
 const { data } = project;
 const { Content } = await render(project);
-const rows = [
-  { label: "Year", value: [String(data.year)] },
-  { label: "Type", value: [data.category] },
-  { label: "Role", value: data.role },
-  { label: "Tools / Medium", value: data.medium },
-  { label: "Research area", value: data.researchAreas },
-].filter((row) => row.value.length > 0);
 ---
 
 <section class="legacy-project-body">
-  <div class="legacy-project-inner shell">
-    <header class="legacy-project-record">
-      <p class="section-kicker">Earlier portfolio archive</p>
-      <dl>
-        {rows.map((row) => (
-          <div>
-            <dt>{row.label}</dt>
-            <dd>{row.value.join(" / ")}</dd>
-          </div>
-        ))}
-      </dl>
-      {data.tags.length > 0 && (
-        <ul class="legacy-tag-list" aria-label="Project topics">
-          {data.tags.map((tag) => <li>{tag}</li>)}
-        </ul>
-      )}
-      {data.sourceUrl && (
-        <a class="legacy-source-link" href={data.sourceUrl} rel="noreferrer">
-          Original Wix archive ↗
-        </a>
-      )}
-    </header>
+  <div class="project-body legacy-project-story shell">
+    <ProjectMetadata project={project} />
 
-    <div class="legacy-project-story">
+<div class="project-story legacy-project-story">
       <Content />
+      {data.team.length > 0 && <ProjectTeam items={data.team} />}
     </div>
   </div>
+
+  <script>
+    const CAROUSEL_INTERVAL_MS = 2000;
+
+    function initLaksanaCarousels() {
+      const carousels = document.querySelectorAll<HTMLElement>(
+        '.legacy-project-body .wix-carousel'
+      );
+      if (!carousels.length) return;
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      carousels.forEach((carousel) => {
+        const figures = carousel.querySelectorAll<HTMLElement>(':scope > figure');
+        if (figures.length < 2) return;
+
+        // Activate carousel mode: all figures become absolute, container uses aspect-ratio
+        carousel.classList.add('is-active');
+
+        let currentIndex = 0;
+        let timer: ReturnType<typeof setInterval> | null = null;
+        let paused = false;
+
+        // Mark the first figure as current.
+        figures[0].classList.add('is-current');
+
+        const showFigure = (index: number) => {
+          figures[currentIndex].classList.remove('is-current');
+          currentIndex = index;
+          figures[currentIndex].classList.add('is-current');
+        };
+
+        const advance = () => {
+          showFigure((currentIndex + 1) % figures.length);
+        };
+
+        const start = () => {
+          if (timer !== null || prefersReducedMotion.matches) return;
+          timer = setInterval(advance, CAROUSEL_INTERVAL_MS);
+        };
+
+        const stop = () => {
+          if (timer !== null) {
+            clearInterval(timer);
+            timer = null;
+          }
+        };
+
+        carousel.addEventListener('mouseenter', () => {
+          paused = true;
+          stop();
+        });
+        carousel.addEventListener('mouseleave', () => {
+          paused = false;
+          start();
+        });
+        carousel.addEventListener(
+          'touchstart',
+          () => {
+            paused = true;
+            stop();
+          },
+          { passive: true }
+        );
+        carousel.addEventListener(
+          'touchend',
+          () => {
+            paused = false;
+            start();
+          },
+          { passive: true }
+        );
+
+        prefersReducedMotion.addEventListener('change', (event) => {
+          if (event.matches) {
+            stop();
+          } else if (!paused) {
+            start();
+          }
+        });
+
+        start();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLaksanaCarousels);
+    } else {
+      initLaksanaCarousels();
+    }
+  </script>
 </section>

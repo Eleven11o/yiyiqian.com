@@ -4,12 +4,13 @@ interface Props {
   label: string;
   title: string;
   emphasis?: boolean;
+  compact?: boolean;
 }
 
-const { number, label, title, emphasis = false } = Astro.props;
+const { number, label, title, emphasis = false, compact = false } = Astro.props;
 ---
 
-<section class:list={["narrative-section", { emphasis }]}>
+<section class:list={["narrative-section", { emphasis, "narrative-section--compact": compact }]}>
   <header>
     <p class="section-kicker">{number && <span>{number} / </span>}{label}</p>
     <h2>{title}</h2>

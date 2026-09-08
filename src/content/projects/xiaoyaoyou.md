@@ -2,7 +2,7 @@
 title: "Xiaoyaoyou"
 titleZh: "逍遥游"
 subtitle: "Zhuang Zhou’s Dream · A Multi-Sensor Mechanical Installation"
-year: "Earlier work"
+year: 2022
 category: "Interactive Media"
 role: []
 medium:
@@ -56,7 +56,7 @@ gallery: []
   <figcaption>Installation documentation · preserved from the original Wix portfolio</figcaption>
 </figure>
 
-<section class="legacy-chapter legacy-accent-band" data-accent="cyan" aria-labelledby="xiaoyaoyou-concept">
+<section class="legacy-chapter legacy-accent-band legacy-concept-section" data-accent="cyan" aria-labelledby="xiaoyaoyou-concept">
   <header class="legacy-chapter-heading">
     <p class="legacy-part">Concept</p>
     <h2 id="xiaoyaoyou-concept">庄周·梦<span>Zhuang Zhou’s Dream</span></h2>
@@ -78,7 +78,7 @@ gallery: []
     </div>
   </div>
 
-  <div class="legacy-media-grid">
+  <div class="legacy-media-grid legacy-concept-media">
     <figure>
       <img src="/images/projects/zhuangzhou-dream/scene-00.avif" alt="Atmospheric view of the projected landscape installation" loading="lazy" />
       <figcaption>Projected landscape</figcaption>
@@ -112,13 +112,12 @@ gallery: []
   </div>
 </section>
 
-<section class="legacy-chapter legacy-accent-band" data-accent="violet" aria-labelledby="xiaoyaoyou-hardware">
-  <header class="legacy-chapter-heading">
-    <p class="legacy-part">Mechanical system</p>
-    <h2 id="xiaoyaoyou-hardware">硬件构造<span>Hardware and spatial choreography</span></h2>
+<section class="legacy-chapter legacy-accent-band legacy-build-section legacy-build-section--hardware" data-accent="violet" aria-labelledby="xiaoyaoyou-hardware">
+  <header class="legacy-build-heading">
+    <h2 id="xiaoyaoyou-hardware">硬件构思<span>Hardware conception</span></h2>
   </header>
 
-  <div class="legacy-bilingual">
+  <div class="legacy-build-copy">
     <div lang="zh-CN">
       <h3>山、云与鲲</h3>
       <p>九座山峰沿画面平移，一组云气结构在长卷中移动，三只机械鲲分别旋转。毛笔上的接触传感器控制山峰；两组超声波传感器感知观众距离并控制鲲与云的运动。</p>
@@ -131,42 +130,30 @@ gallery: []
     </div>
   </div>
 
-  <div class="legacy-media-pair">
+  <div class="legacy-media-pair legacy-test-pair">
     <figure>
-      <img src="/images/projects/zhuangzhou-dream/scene-02.avif" alt="Mechanical mountain landscape with moving parts" loading="lazy" />
-      <figcaption>Mountain translation mechanism</figcaption>
-    </figure>
-    <figure>
-      <img src="/images/projects/zhuangzhou-dream/scene-03.avif" alt="Mechanical Kun element used in the installation" loading="lazy" />
-      <figcaption>Rotating Kun mechanism</figcaption>
-    </figure>
-  </div>
-
-  <div class="legacy-media-pair">
-    <figure>
-      <video controls preload="metadata" playsinline>
+      <video controls preload="metadata" playsinline poster="/images/projects/zhuangzhou-dream/scene-02.avif">
         <source src="/videos/projects/zhuangzhou-dream/mechanical-study-01.mp4" type="video/mp4" />
         Your browser does not support embedded video.
       </video>
-      <figcaption>Mechanical study I</figcaption>
+      <figcaption>视频：机械测试 I<span>Video: Mechanical study I</span></figcaption>
     </figure>
     <figure>
-      <video controls preload="metadata" playsinline>
+      <video controls preload="metadata" playsinline poster="/images/projects/zhuangzhou-dream/scene-03.avif">
         <source src="/videos/projects/zhuangzhou-dream/mechanical-study-02.mp4" type="video/mp4" />
         Your browser does not support embedded video.
       </video>
-      <figcaption>Mechanical study II</figcaption>
+      <figcaption>视频：机械测试 II<span>Video: Mechanical study II</span></figcaption>
     </figure>
   </div>
 </section>
 
-<section class="legacy-chapter" aria-labelledby="xiaoyaoyou-software">
-  <header class="legacy-chapter-heading">
-    <p class="legacy-part">Interaction system</p>
-    <h2 id="xiaoyaoyou-software">软件控制<span>Unity, Raspberry Pi, and sensor input</span></h2>
+<section class="legacy-chapter legacy-build-section legacy-build-section--software" aria-labelledby="xiaoyaoyou-software">
+  <header class="legacy-build-heading">
+    <h2 id="xiaoyaoyou-software">软件构思<span>Software conception</span></h2>
   </header>
 
-  <div class="legacy-bilingual">
+  <div class="legacy-build-copy">
     <div lang="zh-CN">
       <h3>交互流程</h3>
       <p>Unity 界面负责组织交互状态，Raspberry Pi 接收传感器信号并与运动控制端通信。测试阶段分别记录了毛笔接触、超声波距离与机械反馈之间的对应关系，再将独立动作合并为完整场景。</p>
@@ -177,53 +164,36 @@ gallery: []
     </div>
   </div>
 
-  <div class="legacy-media-grid">
-    <figure>
-      <img src="/images/projects/zhuangzhou-dream/scene-04.avif" alt="Unity interface used to test the installation controls" loading="lazy" />
-      <figcaption>Unity control interface I</figcaption>
-    </figure>
-    <figure>
-      <img src="/images/projects/zhuangzhou-dream/scene-05.avif" alt="Sensor and movement controls shown in the project interface" loading="lazy" />
-      <figcaption>Unity control interface II</figcaption>
-    </figure>
-    <figure>
-      <img src="/images/projects/zhuangzhou-dream/scene-06.avif" alt="Interaction state testing interface" loading="lazy" />
-      <figcaption>Interaction-state testing</figcaption>
-    </figure>
-  </div>
-
-  <div class="legacy-media-grid">
-    <figure>
-      <video controls preload="metadata" playsinline>
+  <div class="legacy-software-layout">
+    <figure class="legacy-software-media legacy-software-media--one">
+      <video controls preload="metadata" playsinline poster="/images/projects/zhuangzhou-dream/scene-04.avif">
         <source src="/videos/projects/zhuangzhou-dream/interaction-test-01.mp4" type="video/mp4" />
         Your browser does not support embedded video.
       </video>
-      <figcaption>Interaction test I</figcaption>
+      <figcaption>视频：交互测试 I<span>Video: Interaction test I</span></figcaption>
     </figure>
-    <figure>
-      <video controls preload="metadata" playsinline>
+    <aside class="legacy-system-flow" aria-label="Interaction system flow">
+      <p>System flow</p>
+      <ol>
+        <li>Sensor input</li>
+        <li>Raspberry Pi</li>
+        <li>Unity interface</li>
+        <li>Motion control</li>
+      </ol>
+    </aside>
+    <figure class="legacy-software-media legacy-software-media--two">
+      <video controls preload="metadata" playsinline poster="/images/projects/zhuangzhou-dream/scene-05.avif">
         <source src="/videos/projects/zhuangzhou-dream/interaction-test-02.mp4" type="video/mp4" />
         Your browser does not support embedded video.
       </video>
-      <figcaption>Interaction test II</figcaption>
+      <figcaption>视频：交互测试 II<span>Video: Interaction test II</span></figcaption>
     </figure>
-    <figure>
-      <video controls preload="metadata" playsinline>
+    <figure class="legacy-software-media legacy-software-media--three">
+      <video controls preload="metadata" playsinline poster="/images/projects/zhuangzhou-dream/scene-06.avif">
         <source src="/videos/projects/zhuangzhou-dream/interaction-test-03.mp4" type="video/mp4" />
         Your browser does not support embedded video.
       </video>
-      <figcaption>Interaction test III</figcaption>
+      <figcaption>视频：交互测试 III<span>Video: Interaction test III</span></figcaption>
     </figure>
   </div>
 </section>
-
-<footer class="legacy-colophon">
-  <div>
-    <h2>Archive note</h2>
-  </div>
-  <div>
-    <p>This page preserves the visual language and public documentation of the original Wix project while adapting it to the current portfolio’s navigation and accessibility structure.</p>
-    <p>Exact project year and individual role were not stated on the public archive and remain to be confirmed.</p>
-  </div>
-</footer>
-

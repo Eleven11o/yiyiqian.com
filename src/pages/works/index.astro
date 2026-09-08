@@ -6,16 +6,16 @@ import ProjectPreview from "../../components/ProjectPreview.astro";
 const categories = [
   { value: "Cinematic VR", label: "Cinematic VR" },
   { value: "Interactive Media", label: "Interactive Media" },
-  { value: "Curatorial", label: "Curatorial / 策展" },
+
 ] as const;
 const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<BaseLayout title="Works — Yiyi Qian" description="Cinematic VR, interactive media, and curatorial works by Yiyi Qian.">
+<BaseLayout title="Works — Yiyi Qian" description="Cinematic VR and interactive media works by Yiyi Qian.">
   <header class="page-header shell">
     <p class="section-kicker">Archive</p>
     <h1>Works</h1>
-    <p class="page-intro">Artistic works across cinematic VR, interactive media, and curatorial practice.</p>
+
   </header>
 
   <div class="works-archive shell">

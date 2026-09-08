@@ -38,20 +38,29 @@ const pageTitle = `${data.title} — Yiyi Qian`;
       <div class="project-story">
         {data.trailer && <ProjectTrailer video={data.trailer} />}
 
-        {data.externalMedia?.length && (
+        {data.externalMedia && data.externalMedia.length > 0 && (
           <nav class="project-watch" aria-label="Project viewing links">
             {data.externalMedia.map((item) => (
               <a href={item.url} rel="noreferrer">
                 <span class="section-kicker">Film screener</span>
-                <strong>{item.label}</strong>
+                <strong class="project-watch-link-text">{item.label}</strong>
+                {item.subtitle && <span class="project-watch-subtitle">{item.subtitle}</span>}
                 <span class="project-watch-arrow" aria-hidden="true">↗</span>
               </a>
             ))}
           </nav>
         )}
 
-        <ProjectNarrativeSection number="01" label="Artwork / Experience" title="The experience">
+        <ProjectNarrativeSection number="01" label="Project Overview" title="Project overview" compact>
           <p>{data.experience}</p>
+          {data.officialRecord && (
+            <p class="project-official-record">
+              <span>{data.officialRecord.label}</span>
+              <a href={data.officialRecord.url} rel="noreferrer">
+                {data.officialRecord.detail}<span aria-hidden="true"> ↗</span>
+              </a>
+            </p>
+          )}
         </ProjectNarrativeSection>
 
         {data.featuredVideo && <ProjectVideo video={data.featuredVideo} />}
@@ -61,25 +70,18 @@ const pageTitle = `${data.title} — Yiyi Qian`;
           <>
 
         {data.context && (
-          <ProjectNarrativeSection label="Context" title="Context and motivation">
-            <p>{data.context}</p>
-          </ProjectNarrativeSection>
+          project.id === "deepcore" ? (
+            <section class="project-context-statement" aria-label="Historical context">
+              <p>{data.context}</p>
+            </section>
+          ) : (
+            <ProjectNarrativeSection label="Context" title="Context and motivation" compact>
+              <p>{data.context}</p>
+            </ProjectNarrativeSection>
+          )
         )}
 
-        {data.personalContribution?.length > 0 && (
-          <ProjectNarrativeSection label="Personal Contribution" title="Yiyi Qian’s contribution">
-            <div class="personal-contribution-copy">
-              {data.personalContribution.map((paragraph) => <p>{paragraph}</p>)}
-              {data.personalContributionSource && (
-                <p class="personal-contribution-source">
-                  Source: <a href={data.personalContributionSource.url} rel="noreferrer">{data.personalContributionSource.label} ↗</a>
-                </p>
-              )}
-            </div>
-          </ProjectNarrativeSection>
-        )}
-
-        {data.gallery.length > 0 && <MediaGallery items={data.gallery.slice(0, 1)} />}
+        {data.gallery.length > 0 && <MediaGallery items={data.gallery.slice(0, 2)} />}
 
         {data.chapterSynopsis.length > 0 && <ChapterSynopsis chapters={data.chapterSynopsis} />}
 
@@ -90,40 +92,44 @@ const pageTitle = `${data.title} — Yiyi Qian`;
         )}
 
         {data.creativeProcess && (
-          <ProjectNarrativeSection number="03" label="Creative Process" title="Making and inquiry">
+          <ProjectNarrativeSection number="03" label="Creative Process" title="Making and inquiry" compact>
             <p>{data.creativeProcess}</p>
           </ProjectNarrativeSection>
         )}
 
         {data.designProduction && (
-          <ProjectNarrativeSection label="Design / Production" title="Design and production">
+          <ProjectNarrativeSection label="Design / Production" title="Design and production" compact>
             <p>{data.designProduction}</p>
           </ProjectNarrativeSection>
         )}
 
         {data.researchMethod && (
-          <ProjectNarrativeSection label="Research Method" title="Method">
+          <ProjectNarrativeSection label="Research Method" title="Method" compact>
             <p>{data.researchMethod}</p>
           </ProjectNarrativeSection>
         )}
 
-        {data.gallery.length > 1 && <MediaGallery items={data.gallery.slice(1)} />}
+        {data.productionPipeline && (
+          <ProjectNarrativeSection label="Technical approach" title="Production pipeline" compact>
+            <p>{data.productionPipeline}</p>
+          </ProjectNarrativeSection>
+        )}
 
         {data.reflection && (
-          <ProjectNarrativeSection number="04" label="Reflection / Outcome" title="Reflection">
+          <ProjectNarrativeSection number="04" label="Reflection / Outcome" title="Reflection" compact>
             <p>{data.reflection}</p>
           </ProjectNarrativeSection>
         )}
 
         {data.outcome && (
-          <ProjectNarrativeSection label="Outcome" title="Outcome">
+          <ProjectNarrativeSection label="Outcome" title="Outcome" compact>
             <p>{data.outcome}</p>
           </ProjectNarrativeSection>
         )}
           </>
         )}
 
-        {(data.exhibitions?.length || data.awards?.length || data.publications?.length || data.credits?.length || data.laurels.length || data.team.length) && (
+        {Boolean(data.exhibitions?.length || data.awards?.length || data.publications?.length || data.credits?.length || data.laurels.length || data.team.length) && (
           <section class="project-record" aria-labelledby="project-record-title">
             <p class="section-kicker">Project record</p>
             <h2 id="project-record-title">Credits and references</h2>
@@ -135,9 +141,10 @@ const pageTitle = `${data.title} — Yiyi Qian`;
                 </div>
               )}
               {data.awards?.length && (
-                <div>
+                <div class="record-awards">
                   <h3>Awards / Selections</h3>
                   <ul>{data.awards.map((item) => <li>{item}</li>)}</ul>
+
                 </div>
               )}
               {data.publications?.length && (
@@ -154,6 +161,13 @@ const pageTitle = `${data.title} — Yiyi Qian`;
               )}
             </div>
             {data.laurels.length > 0 && <ProjectLaurels items={data.laurels} />}
+            {data.gallery.length > 2 && (
+              <div class="exhibition-documentation">
+                <h3>Exhibition documentation</h3>
+                <MediaGallery items={data.gallery.slice(2)} />
+              </div>
+            )}
+
             {data.team.length > 0 && <ProjectTeam items={data.team} />}
           </section>
         )}

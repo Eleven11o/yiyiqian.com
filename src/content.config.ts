@@ -6,7 +6,7 @@ const projectCategories = [
   "Cinematic VR",
   "Interactive Media",
   "Research Projects",
-  "Curatorial",
+
 ] as const;
 
 const projects = defineCollection({
@@ -16,6 +16,7 @@ const projects = defineCollection({
     titleZh: z.string().optional(),
     subtitle: z.string().optional(),
     year: z.union([z.number(), z.string()]),
+    archiveLabel: z.string().optional(),
     category: z.enum(projectCategories),
     role: z.array(z.string()).default([]),
     medium: z.array(z.string()).default([]),
@@ -29,6 +30,13 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     order: z.number().default(999),
     experience: z.string(),
+    officialRecord: z
+      .object({
+        label: z.string(),
+        detail: z.string(),
+        url: z.url(),
+      })
+      .optional(),
     context: z.string().optional(),
     personalContribution: z.array(z.string()).default([]),
     personalContributionSource: z
@@ -41,8 +49,9 @@ const projects = defineCollection({
     creativeProcess: z.string().optional(),
     designProduction: z.string().optional(),
     researchMethod: z.string().optional(),
-    reflection: z.string().optional(),
-    outcome: z.string().optional(),
+   reflection: z.string().optional(),
+   outcome: z.string().optional(),
+   productionPipeline: z.string().optional(),
     featuredVideo: z
       .object({
         provider: z.literal("Vimeo"),
@@ -73,6 +82,11 @@ const projects = defineCollection({
           summaryEn: z.array(z.string()),
           directorZh: z.string().optional(),
           directorEn: z.string().optional(),
+          historicalFact: z
+            .object({
+              en: z.string().optional(),
+            })
+            .optional(),
           imageSlots: z.number().int().min(0).max(4).default(2),
           images: z
             .array(
@@ -115,6 +129,7 @@ const projects = defineCollection({
         z.object({
           label: z.string(),
           url: z.url(),
+          subtitle: z.string().optional(),
         }),
       )
       .optional(),

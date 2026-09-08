@@ -4,8 +4,8 @@ eyebrow: "Profile"
 title: "About"
 biography: "Yiyi Qian is an artist and XR/HCI researcher based in Hangzhou, China. She is currently pursuing an M.A. in Digital Media Art at China Academy of Art, where she is a member of the AI Center. Her practice and research investigate embodied experience, spatial narrative, and user experience in virtual reality, with particular attention to digital cultural heritage. Working across cinematic VR and interactive installation, she connects creative production with research questions, design methods, and evaluation. Her recent projects include Deepcore: When Cave Breath, The Enigma of the Divine Capital, and Resonance. Her research has been published at ACM ICHEC 2025 and SIGGRAPH Asia 2025 Posters. She received the 2024 National Scholarship for Graduate Students and graduated from China Academy of Art in the top 5% of her undergraduate cohort as an Outstanding Graduate of Zhejiang Province."
 education:
-  - "M.A. in Digital Media Art, China Academy of Art — 2024–2027 (expected); member of the AI Center; GPA 4.28/5.00"
-  - "B.A. in Industrial Design, Media and Interaction Track, China Academy of Art — 2020–2024; GPA 4.24/5.00; top 5%"
+  - "M.A. in Digital Media Art, China Academy of Art — 2024–2027 (expected); member of the AI Center"
+  - "B.A. in Industrial Design, Media and Interaction Track, China Academy of Art — 2020–2024; top 5%"
 awards:
   - "National Scholarship for Graduate Students — 2024"
   - "Outstanding Graduate of Zhejiang Province and Outstanding Graduate of China Academy of Art — 2024"
@@ -40,3 +40,4 @@ researchInterests:
   - "XR Creation Tools"
   - "Immersive Cultural Heritage"
 ---
+

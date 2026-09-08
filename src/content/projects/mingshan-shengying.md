@@ -3,7 +3,7 @@ title: "Sacred Images of Renowned Mountains"
 titleZh: "名山圣影"
 subtitle: "A Holographic Panoramic Theatre and 100-Metre Projection Environment"
 year: 2024
-category: "Curatorial"
+category: "Interactive Media"
 role:
   - "Visual Production"
 medium:
@@ -28,7 +28,16 @@ experience: "Sacred Images of Renowned Mountains is a holographic panoramic thea
 storyMode: "research-editorial"
 gallery: []
 ---
-<div class="curatorial-case">
+<figure class="project-video project-local-video">
+  <div class="project-video-frame">
+    <video controls preload="metadata" playsinline poster="/images/projects/mingshan-shengying/cover.jpg" aria-label="Sacred Images of Renowned Mountains project video">
+      <source src="/videos/projects/mingshan-shengying/project-video.mp4" type="video/mp4" />
+      Your browser does not support embedded video.
+    </video>
+  </div>
+  <figcaption><span>《名山圣影》项目影像</span><span>Project video</span></figcaption>
+</figure>
+<div class="curatorial-case mingshan-curatorial-case">
   <section class="curatorial-section" aria-labelledby="mingshan-concept-title">
     <header class="curatorial-heading">
       <p class="research-section-index">02 / Original text + translation</p>

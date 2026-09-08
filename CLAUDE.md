@@ -65,6 +65,7 @@ Default image policy:
 ## Technical rules
 
 - Continue using Astro and the existing content collections and components.
+- If `node_modules` is absent, run `npm ci` before the first build; do not copy dependencies from the original project.
 - Keep the site static and dependency-light.
 - Do not add React, Vue, or a large UI/animation library without explicit approval.
 - Preserve semantic HTML, keyboard navigation, focus states, contrast, alt text, and `prefers-reduced-motion` behaviour.

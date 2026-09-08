@@ -15,6 +15,9 @@ interface Chapter {
   summaryEn: string[];
   directorZh?: string;
   directorEn?: string;
+  historicalFact?: {
+    en?: string;
+  };
   imageSlots: number;
   images: ChapterImage[];
 }
@@ -47,6 +50,10 @@ const slotsFor = (chapter: Chapter) =>
             <span>{chapter.titleEn}</span>
           </h3>
         </header>
+
+        {chapter.historicalFact?.en && (
+          <p class="chapter-historical-fact">{chapter.historicalFact.en}</p>
+        )}
 
         <div class="chapter-copy">
           <div lang="zh-Hans">
