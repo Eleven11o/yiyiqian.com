@@ -5,6 +5,7 @@ import { z } from "astro/zod";
 const projectCategories = [
   "Cinematic VR",
   "Interactive Media",
+  "Product Design",
   "Research Projects",
 
 ] as const;
@@ -71,7 +72,52 @@ const projects = defineCollection({
       .optional(),
     legacyTheme: z.enum(["wix-laksana", "wix-zhuangzhou"]).optional(),
     sourceUrl: z.url().optional(),
-    storyMode: z.enum(["research-editorial"]).optional(),
+    storyMode: z.enum(["research-editorial", "cultural-product"]).optional(),
+    overviewZh: z.string().optional(),
+    overviewEn: z.string().optional(),
+    awardZh: z.string().optional(),
+    awardEn: z.string().optional(),
+    productTypeZh: z.string().optional(),
+    productTypeEn: z.string().optional(),
+    overviewTitleZh: z.string().optional(),
+    overviewTitleEn: z.string().optional(),
+    showcaseTitleZh: z.string().optional(),
+    showcaseTitleEn: z.string().optional(),
+    detailTitleZh: z.string().optional(),
+    detailTitleEn: z.string().optional(),
+    showcaseLayout: z.enum(["grid", "feature-stack"]).default("grid"),
+    teamBilingual: z
+      .array(
+        z.object({
+          roleZh: z.string(),
+          roleEn: z.string(),
+          membersZh: z.array(z.string()),
+          membersEn: z.array(z.string()),
+        }),
+      )
+      .default([]),
+    showcaseImages: z
+      .array(
+        z.object({
+          src: z.string(),
+          altZh: z.string(),
+          altEn: z.string(),
+          width: z.number(),
+          height: z.number(),
+        }),
+      )
+      .default([]),
+    brochurePages: z
+      .array(
+        z.object({
+          src: z.string(),
+          altZh: z.string(),
+          altEn: z.string(),
+          width: z.number(),
+          height: z.number(),
+        }),
+      )
+      .default([]),
     chapterSynopsis: z
       .array(
         z.object({

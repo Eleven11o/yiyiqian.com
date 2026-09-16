@@ -13,6 +13,7 @@ import ProjectRichStory from "../components/ProjectRichStory.astro";
 import ProjectTeam from "../components/ProjectTeam.astro";
 import ProjectTrailer from "../components/ProjectTrailer.astro";
 import ProjectVideo from "../components/ProjectVideo.astro";
+import ProductDesignStory from "../components/ProductDesignStory.astro";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -31,6 +32,8 @@ const pageTitle = `${data.title} — Yiyi Qian`;
 
     {data.legacyTheme ? (
       <LegacyProjectStory project={project} />
+    ) : data.storyMode === "cultural-product" ? (
+      <ProductDesignStory project={project} />
     ) : (
       <div class="project-body shell">
       <ProjectMetadata project={project} />

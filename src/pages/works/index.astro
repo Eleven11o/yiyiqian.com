@@ -4,8 +4,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectPreview from "../../components/ProjectPreview.astro";
 
 const categories = [
-  { value: "Cinematic VR", label: "Cinematic VR" },
-  { value: "Interactive Media", label: "Interactive Media" },
+  { value: "Cinematic VR", label: "电影式虚拟现实 / Cinematic VR" },
+  { value: "Interactive Media", label: "交互媒体 / Interactive Media" },
+  { value: "Product Design", label: "产品设计 / Product Design" },
 
 ] as const;
 const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);

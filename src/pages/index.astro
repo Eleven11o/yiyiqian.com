@@ -7,9 +7,11 @@ import SectionHeading from "../components/SectionHeading.astro";
 const home = await getEntry("pages", "home");
 if (!home || home.data.pageType !== "home") throw new Error("Home page content is missing.");
 
-const projects = (await getCollection("projects"))
-  .filter((project) => project.data.featured)
-  .sort((a, b) => a.data.order - b.data.order);
+const selectedProjectIds = ["deepcore", "resonance", "lishang-yeying"];
+const allProjects = await getCollection("projects");
+const projects = selectedProjectIds
+  .map((id) => allProjects.find((project) => project.id === id))
+  .filter((project): project is NonNullable<typeof project> => Boolean(project));
 ---
 
 <BaseLayout>

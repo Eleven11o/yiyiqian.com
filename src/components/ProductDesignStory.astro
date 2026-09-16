@@ -1,0 +1,85 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { data } = Astro.props.project;
+---
+
+<div class="lishang-body shell">
+  <aside class="lishang-metadata" aria-label="项目信息 / Project information">
+    <dl>
+      <div>
+        <dt>时间 / Date</dt>
+        <dd>{data.year}</dd>
+      </div>
+      <div>
+        <dt>类型 / Type</dt>
+        <dd>{data.productTypeZh}<br /><span lang="en">{data.productTypeEn}</span></dd>
+      </div>
+      <div>
+        <dt>我的角色 / My role</dt>
+        <dd><strong>项目负责人 / Project Lead</strong></dd>
+      </div>
+    </dl>
+
+    <section class="lishang-team" aria-labelledby="lishang-team-title">
+      <h2 id="lishang-team-title">制作团队<br /><span lang="en">Team</span></h2>
+      {data.teamBilingual.map((group) => (
+        <div class="lishang-team-group">
+          <p>{group.roleZh}<br /><span lang="en">{group.roleEn}</span></p>
+          <p>
+            <span lang="zh-Hans">{group.membersZh.join("、")}</span><br />
+            <span lang="en">{group.membersEn.join(", ")}</span>
+          </p>
+        </div>
+      ))}
+    </section>
+  </aside>
+
+  <div class="lishang-story">
+    <section class="lishang-overview" aria-labelledby="lishang-overview-title">
+      <p class="section-kicker">01 · 项目概述 / Project overview</p>
+      <h2 id="lishang-overview-title">{data.overviewTitleZh}<br /><span lang="en">{data.overviewTitleEn}</span></h2>
+      <div class="lishang-bilingual-copy">
+        <p lang="zh-Hans">{data.overviewZh}</p>
+        <p lang="en">{data.overviewEn}</p>
+      </div>
+      {data.awardZh && data.awardEn && (
+        <p class="lishang-award">
+          <strong lang="zh-Hans">{data.awardZh}</strong>
+          <strong lang="en">{data.awardEn}</strong>
+        </p>
+      )}
+    </section>
+
+    <section class="lishang-showcase" aria-labelledby="lishang-showcase-title">
+      <header>
+        <p class="section-kicker">02 · 项目展示 / Project showcase</p>
+        <h2 id="lishang-showcase-title">{data.showcaseTitleZh}<br /><span lang="en">{data.showcaseTitleEn}</span></h2>
+      </header>
+      <div class:list={["lishang-showcase-grid", `lishang-showcase-grid--${data.showcaseLayout}`]}>
+        {data.showcaseImages.map((image) => (
+          <figure>
+            <img src={image.src} alt={`${image.altZh} / ${image.altEn}`} width={image.width} height={image.height} loading="lazy" />
+            <figcaption><span lang="zh-Hans">{image.altZh}</span><br /><span lang="en">{image.altEn}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  </div>
+</div>
+
+<section class="lishang-brochure shell" aria-labelledby="lishang-brochure-title">
+  <header>
+    <p class="section-kicker">03 · 文创设计详解 / Cultural product design</p>
+    <h2 id="lishang-brochure-title">{data.detailTitleZh}<br /><span lang="en">{data.detailTitleEn}</span></h2>
+  </header>
+  <div class="lishang-brochure-pages">
+    {data.brochurePages.map((page) => (
+      <img src={page.src} alt={`${page.altZh} / ${page.altEn}`} width={page.width} height={page.height} loading="lazy" />
+    ))}
+  </div>
+</section>
