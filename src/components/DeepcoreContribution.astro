@@ -1,0 +1,43 @@
+---
+const images = [
+  { file: "qixia-01.webp", title: "栖霞山火 · 火焰中的造像", en: "Wildfire of Qixia Mountain · Chapter still", credit: "场景制作全流程", creditEn: "End-to-End Scene Production" },
+  { file: "qixia-02.webp", title: "栖霞山火 · 造像现场", en: "Wildfire of Qixia Mountain · Carving site", credit: "场景制作全流程", creditEn: "End-to-End Scene Production" },
+  { file: "mogao-03.webp", title: "莫高窟尘劫 · 章节环境", en: "Calamity of Mogao Grottoes · Chapter environment", credit: "UE场景调色", creditEn: "Scene Color Grading in Unreal Engine" },
+  { file: "longmen-03.webp", title: "龙门瞾相 · 造像现场", en: "The Appearance of Sentient Beings · Carving site", credit: "UE场景调色", creditEn: "Scene Color Grading in Unreal Engine" },
+];
+---
+
+<section class="deepcore-contribution" id="contribution-title" aria-label="个人贡献">
+  <div class="contribution-intro">
+    <p lang="zh-CN">我在《寻窟》中担任《栖霞山火》章节导演，并参与项目编剧与内容统筹，工作涵盖章节叙事组织及部分画面的具体制作。在制作层面，我独立完成下方标注的《栖霞山火》场景，并参与《莫高窟尘劫》与《龙门瞾相》部分场景在 Unreal Engine 中的色彩调整。</p>
+    <p lang="en">I served as chapter director for <em>Wildfire of Qixia Mountain</em> and contributed to screenwriting and content coordination for <em>Deepcore</em>. My work spanned chapter-level narrative development and selected visual production. I independently created the Qixia scenes identified below and contributed in-engine color grading in Unreal Engine to selected scenes in the Mogao and Longmen chapters.</p>
+  </div>
+  {images.map((item) => (
+    <div class="contribution-work">
+      <figure>
+          <img src={`/images/projects/deepcore/${item.file}`} alt={`${item.title} — ${item.en}`} width="1600" height="800" loading="lazy" decoding="async" />
+        <figcaption>
+          <div>{item.title}<span lang="en">{item.en}</span></div>
+          <div class="contribution-credit">{item.credit}<span lang="en">{item.creditEn}</span></div>
+        </figcaption>
+      </figure>
+    </div>
+  ))}
+</section>
+
+<style>
+  .deepcore-contribution { padding-block: var(--space-lg); border-bottom: 1px solid var(--line); }
+  .contribution-intro { max-width: 78ch; margin-bottom: 2.5rem; }
+  .contribution-intro p { font-size: .92rem; line-height: 1.85; text-align: justify; }
+  .contribution-intro p[lang="en"] { color: var(--muted); margin-top: 1.2rem; }
+  figure { margin: 0 0 2.5rem; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: .9rem; font-size: .78rem; line-height: 1.65; }
+  figcaption span { display: block; color: var(--muted); font-size: .72rem; }
+  .contribution-credit { text-align: right; }
+  @media(max-width: 700px) {
+    figcaption { flex-direction: column; gap: .5rem; }
+    .contribution-credit { text-align: left; }
+    .contribution-intro p[lang="en"] { text-align: left; }
+  }
+</style>

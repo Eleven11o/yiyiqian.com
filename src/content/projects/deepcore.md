@@ -56,12 +56,12 @@ chapterSynopsis:
     images:
       - src: "/images/projects/deepcore/qixia-01.webp"
         alt: "A carved Buddha surrounded by wildfire in the Qixia Mountain chapter"
-        caption: "Wildfire of Qixia Mountain — chapter still."
+        caption: "栖霞山火 · 场景制作全流程 / Wildfire of Qixia Mountain — End-to-End Scene Production"
         width: 1600
         height: 800
       - src: "/images/projects/deepcore/qixia-02.webp"
         alt: "A Buddha figure surrounded by timber scaffolding in the Qixia Mountain chapter"
-        caption: "Wildfire of Qixia Mountain — carving site."
+        caption: "栖霞山火 · 场景制作全流程 / Wildfire of Qixia Mountain — End-to-End Scene Production"
         width: 1600
         height: 800
       - src: "/images/projects/deepcore/qixia-03.webp"
@@ -103,7 +103,7 @@ chapterSynopsis:
         height: 800
       - src: "/images/projects/deepcore/mogao-03.webp"
         alt: "A dim historical market street with pottery stalls in the Mogao Grottoes chapter"
-        caption: "Calamity of Mogao Grottoes — chapter environment."
+        caption: "莫高窟尘劫 · UE场景调色 / Calamity of Mogao Grottoes — Scene Color Grading in Unreal Engine"
         width: 1600
         height: 800
       - src: "/images/projects/deepcore/mogao-04.webp"
@@ -136,7 +136,7 @@ chapterSynopsis:
         height: 800
       - src: "/images/projects/deepcore/longmen-03.webp"
         alt: "A monumental Buddha under construction among timber platforms in the Longmen chapter"
-        caption: "The Appearance of Sentient Beings — carving site."
+        caption: "龙门瞾相 · UE场景调色 / The Appearance of Sentient Beings — Scene Color Grading in Unreal Engine"
         width: 1600
         height: 800
       - src: "/images/projects/deepcore/longmen-04.webp"

@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import ChapterSynopsis from "../components/ChapterSynopsis.astro";
+import DeepcoreContribution from "../components/DeepcoreContribution.astro";
 import LegacyProjectStory from "../components/LegacyProjectStory.astro";
 import MediaGallery from "../components/MediaGallery.astro";
 import ProjectHero from "../components/ProjectHero.astro";
@@ -86,6 +87,7 @@ const pageTitle = `${data.title} — Yiyi Qian`;
 
         {data.gallery.length > 0 && <MediaGallery items={data.gallery.slice(0, 2)} />}
 
+        {project.id === "deepcore" && <DeepcoreContribution />}
         {data.chapterSynopsis.length > 0 && <ChapterSynopsis chapters={data.chapterSynopsis} />}
 
         {data.researchQuestion && (
