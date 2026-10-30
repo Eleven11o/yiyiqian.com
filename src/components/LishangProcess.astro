@@ -1,0 +1,55 @@
+---
+import HighlightCopy from "./HighlightCopy.astro";
+const processPhotos = [
+  { file: "process-pattern.webp", zh: "传统制作 · 绘纸花样", en: "Traditional craft · Drawing motifs", width: 1200, height: 800 },
+  { file: "process-frame.webp", zh: "传统制作 · 制作灯骨", en: "Traditional craft · Bamboo frame", width: 1200, height: 800 },
+  { file: "process-kit.webp", zh: "改进后 · 材料包", en: "Redesign · Making kit", width: 1200, height: 900 },
+  { file: "process-kit-parts.webp", zh: "改进后 · 材料包组件", en: "Redesign · Kit components", width: 866, height: 595 },
+];
+---
+<section class="process-section" aria-labelledby="process-title" id="making-process">
+  <header>
+    <p class="section-kicker">03 · 制作体验与流程优化 / Making Experience &amp; Process Optimization</p>
+    <h2 id="process-title">从复杂手工到可参与的制作体验<br /><span lang="en">From complex craft to accessible making</span></h2>
+  </header>
+  <div class="process-copy">
+    <p lang="zh-Hans"><HighlightCopy text="传统仁灯依次经历灯骨制作、绘纸花样、压平、雕刻、拓印晾干、针刺与糊上灯骨。毛竹取材和削制门槛高，操作易伤手；羊油板制版、逐层雕刻及针筷绑扎增加了准备与操作难度，纸面粘贴后也不便修改或更换。针对这些阻碍参与的环节，设计以预裁白卡纸替代竹骨，提供图案卡与自由绘制两种路径，用橡皮章与锥子简化制版和针刺，增加自主上色，并以磁吸灯窗替代固定粘贴。在保留针刺透光特征的同时，将体验重点转向纹样创作、色彩表达与可更换的日常使用。按项目记录，制作周期由约3天缩短至40分钟，主要工序由7步简化为5步。" /></p>
+    <p lang="en"><HighlightCopy text="Traditional lantern making involves building a bamboo frame, drawing motifs, pressing layers, carving, printing and drying, piercing, and pasting the finished paper onto the frame. Sourcing and splitting bamboo can be difficult and risks hand injuries. Tallow-board preparation, layered carving, and binding a needle to chopsticks add complexity, while glued panels are difficult to change. The redesign uses pre-cut cardstock frames, offers supplied patterns or free drawing, simplifies preparation and piercing with a rubber block and an awl, introduces hand coloring, and replaces glued panels with magnetic attachments. Retaining the distinctive pierced-light effect, it shifts participation toward pattern-making, color expression, and interchangeable everyday use. Project records indicate a change from approximately three days to forty minutes and from seven main operations to five." /></p>
+  </div>
+  <div class="process-photos" role="region" aria-label="传统制作与改进材料包 / Traditional craft and redesigned kit" tabindex="0">
+    {processPhotos.map(photo => (
+      <figure>
+        <img src={`/images/projects/lishang-yaoying/${photo.file}`} alt={`${photo.zh} / ${photo.en}`} width={photo.width} height={photo.height} loading="lazy" />
+        <figcaption><span lang="zh-Hans">{photo.zh}</span><span lang="en">{photo.en}</span></figcaption>
+      </figure>
+    ))}
+  </div>
+  <figure>
+    <div class="process-scroll" role="region" aria-label="制作流程对比图，可横向滑动 / Process comparison, scroll horizontally" tabindex="0">
+      <img src="/images/projects/lishang-yaoying/process-comparison.svg?v=aligned" alt="传统制作七道工序与优化后五步的中英双语对比图，包含材料、操作、痛点与改进策略。 / Bilingual comparison of seven traditional operations and five redesigned steps, with materials, barriers and design strategies." width="1760" height="1080" loading="lazy" />
+    </div>
+  </figure>
+</section>
+
+<style>
+  .process-section { padding-block: var(--space-lg); min-width: 0; }
+  header { max-width: 68rem; }
+  h2 { margin-top: clamp(1.5rem,3vw,2.5rem); font-size: clamp(1.8rem,3.3vw,3.4rem); line-height: 1.15; }
+  h2 span { color: var(--muted); font-size: .52em; font-weight: 400; letter-spacing: -.01em; }
+  .process-copy { max-width: 64rem; margin: 3rem 0; }
+  .process-copy p { font-size: clamp(.88rem,1.15vw,1.08rem); line-height: 1.8; text-align: justify; }
+  .process-copy p[lang="en"] { color: var(--muted); margin-top: 1.6rem; }
+  figure { margin: 3rem 0 0; }
+  .process-scroll { overflow-x: auto; scrollbar-color: var(--muted) var(--paper-bright); scrollbar-width: thin; padding-bottom: .75rem; }
+  .process-scroll:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+  .process-scroll img { width: 100%; min-width: 1500px; max-width: none; height: auto; background: var(--paper); }
+  .process-photos { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(.6rem,1.2vw,1rem); overflow-x: auto; }
+  .process-photos figure { margin: 0; min-width: 0; }
+  .process-photos img { width: 100%; aspect-ratio: 3 / 2; object-fit: contain; background: var(--paper-bright); }
+  .process-photos figcaption { margin-top: .65rem; font-size: .68rem; line-height: 1.6; }
+  .process-photos figcaption span { display: block; }
+  .process-photos figcaption span[lang="en"] { color: var(--muted); }
+  .process-photos:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+  @media(max-width:640px) { .process-photos { grid-template-columns: repeat(4, minmax(170px,1fr)); } }
+  @media(max-width: 640px) { .process-section { padding-block: 3.5rem; } .process-copy p[lang="en"] { text-align: left; } }
+</style>

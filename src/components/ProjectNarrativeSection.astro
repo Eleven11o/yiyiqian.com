@@ -3,17 +3,18 @@ interface Props {
   number?: string;
   label: string;
   title: string;
+  titleZh?: string;
   emphasis?: boolean;
   compact?: boolean;
 }
 
-const { number, label, title, emphasis = false, compact = false } = Astro.props;
+const { number, label, title, titleZh, emphasis = false, compact = false } = Astro.props;
 ---
 
 <section class:list={["narrative-section", { emphasis, "narrative-section--compact": compact }]}>
   <header>
     <p class="section-kicker">{number && <span>{number} / </span>}{label}</p>
-    <h2>{title}</h2>
+    <h2>{title}{titleZh && <span class="deepcore-heading-zh" lang="zh-Hans">{titleZh}</span>}</h2>
   </header>
   <div class="narrative-copy"><slot /></div>
 </section>

@@ -15,6 +15,7 @@ import ProjectTeam from "../components/ProjectTeam.astro";
 import ProjectTrailer from "../components/ProjectTrailer.astro";
 import ProjectVideo from "../components/ProjectVideo.astro";
 import ProductDesignStory from "../components/ProductDesignStory.astro";
+import { deepcoreCopy } from "../data/deepcoreCopy";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -55,8 +56,10 @@ const pageTitle = `${data.title} — Yiyi Qian`;
           </nav>
         )}
 
-        <ProjectNarrativeSection number="01" label="Project Overview" title="Project overview" compact>
+        <ProjectNarrativeSection number="01" label="Project Overview" title="Project overview" titleZh={project.id === "deepcore" ? "项目概述" : undefined} compact>
           <p>{data.experience}</p>
+          {project.id === "deepcore" && <p class="deepcore-zh" lang="zh-Hans">{deepcoreCopy.overview}</p>}
+          {project.id === "resonance" && <p class="resonance-zh" lang="zh-Hans">《共·鸣》是一件探索共同在场与群体情感的音乐仪式交互装置。中心架鼓、四面屏幕、机械鼓槌、入座与敲击传感以及实时摄像映射，共同构成即时的视听与动作反馈，使观众围绕共同的节奏与注意中心，从旁观者转变为共同表演者。</p>}
           {data.officialRecord && (
             <p class="project-official-record">
               <span>{data.officialRecord.label}</span>
@@ -77,6 +80,7 @@ const pageTitle = `${data.title} — Yiyi Qian`;
           project.id === "deepcore" ? (
             <section class="project-context-statement" aria-label="Historical context">
               <p>{data.context}</p>
+              <p class="deepcore-zh" lang="zh-Hans">{deepcoreCopy.context}</p>
             </section>
           ) : (
             <ProjectNarrativeSection label="Context" title="Context and motivation" compact>
@@ -88,7 +92,7 @@ const pageTitle = `${data.title} — Yiyi Qian`;
         {data.gallery.length > 0 && <MediaGallery items={data.gallery.slice(0, 2)} />}
 
         {project.id === "deepcore" && <DeepcoreContribution />}
-        {data.chapterSynopsis.length > 0 && <ChapterSynopsis chapters={data.chapterSynopsis} />}
+        {data.chapterSynopsis.length > 0 && <ChapterSynopsis chapters={data.chapterSynopsis} englishFirst={project.id === "deepcore"} />}
 
         {data.researchQuestion && (
           <ProjectNarrativeSection number="02" label="Research Question" title="Question emerging from practice" emphasis>
@@ -115,8 +119,9 @@ const pageTitle = `${data.title} — Yiyi Qian`;
         )}
 
         {data.productionPipeline && (
-          <ProjectNarrativeSection label="Technical approach" title="Production pipeline" compact>
+          <ProjectNarrativeSection label="Technical approach" title="Production pipeline" titleZh={project.id === "deepcore" ? "技术实现与制作流程" : undefined} compact>
             <p>{data.productionPipeline}</p>
+            {project.id === "deepcore" && <p class="deepcore-zh" lang="zh-Hans">{deepcoreCopy.pipeline}</p>}
           </ProjectNarrativeSection>
         )}
 

@@ -1,11 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import HighlightCopy from "./HighlightCopy.astro";
+import LishangProcess from "./LishangProcess.astro";
 
 interface Props {
   project: CollectionEntry<"projects">;
 }
 
-const { data } = Astro.props.project;
+const { data, id } = Astro.props.project;
+const hasProcess = id === "lishang-yeying";
 ---
 
 <div class="lishang-body shell">
@@ -44,8 +47,8 @@ const { data } = Astro.props.project;
       <p class="section-kicker">01 · 项目概述 / Project overview</p>
       <h2 id="lishang-overview-title">{data.overviewTitleZh}<br /><span lang="en">{data.overviewTitleEn}</span></h2>
       <div class="lishang-bilingual-copy">
-        <p lang="zh-Hans">{data.overviewZh}</p>
-        <p lang="en">{data.overviewEn}</p>
+        <p lang="zh-Hans">{hasProcess ? <HighlightCopy text={data.overviewZh ?? ""} /> : data.overviewZh}</p>
+        <p lang="en">{hasProcess ? <HighlightCopy text={data.overviewEn ?? ""} /> : data.overviewEn}</p>
       </div>
       {data.awardZh && data.awardEn && (
         <p class="lishang-award">
@@ -69,12 +72,13 @@ const { data } = Astro.props.project;
         ))}
       </div>
     </section>
+    {hasProcess && <LishangProcess />}
   </div>
 </div>
 
 <section class="lishang-brochure shell" aria-labelledby="lishang-brochure-title">
   <header>
-    <p class="section-kicker">03 · 文创设计详解 / Cultural product design</p>
+    <p class="section-kicker">{hasProcess ? "04" : "03"} · 文创设计详解 / Cultural product design</p>
     <h2 id="lishang-brochure-title">{data.detailTitleZh}<br /><span lang="en">{data.detailTitleEn}</span></h2>
   </header>
   <div class="lishang-brochure-pages">

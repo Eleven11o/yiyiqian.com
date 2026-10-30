@@ -1,0 +1,10 @@
+---
+interface Props { text: string; }
+const { text } = Astro.props;
+const terms = ["约3天缩短至40分钟", "7步简化为5步", "参与式非遗体验", "预裁白卡纸替代竹骨", "橡皮章与锥子简化制版和针刺", "磁吸灯窗替代固定粘贴", "针刺透光特征", "纹样创作、色彩表达与可更换的日常使用", "approximately three days to forty minutes", "seven steps to five", "seven main operations to five", "participatory heritage experience", "pre-cut cardstock frames", "rubber block and an awl", "magnetic attachments", "distinctive pierced-light effect"];
+const parts = text.split(new RegExp(`(${terms.join("|")})`, "g"));
+---
+{parts.map(part => terms.includes(part) ? <strong>{part}</strong> : part)}
+<style>
+  strong { color: var(--accent); font-weight: 600; }
+</style>

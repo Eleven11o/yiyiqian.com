@@ -1,4 +1,5 @@
 ---
+import { deepcoreCopy } from "../data/deepcoreCopy";
 interface ChapterImage {
   src: string;
   alt: string;
@@ -24,9 +25,10 @@ interface Chapter {
 
 interface Props {
   chapters: Chapter[];
+  englishFirst?: boolean;
 }
 
-const { chapters } = Astro.props;
+const { chapters, englishFirst = false } = Astro.props;
 const slotsFor = (chapter: Chapter) =>
   Array.from({ length: Math.max(chapter.imageSlots, chapter.images.length) });
 ---
@@ -52,11 +54,14 @@ const slotsFor = (chapter: Chapter) =>
         </header>
 
         {chapter.historicalFact?.en && (
-          <p class="chapter-historical-fact">{chapter.historicalFact.en}</p>
+          <div class="chapter-historical-fact">
+            <p lang="en">{chapter.historicalFact.en}</p>
+            {englishFirst && deepcoreCopy.history[chapter.number] && <p class="deepcore-zh" lang="zh-Hans">{deepcoreCopy.history[chapter.number]}</p>}
+          </div>
         )}
 
         <div class="chapter-copy">
-          <div lang="zh-Hans">
+          <div lang="zh-Hans" class:list={[{ "deepcore-chapter-zh": englishFirst }]}>
             {chapter.summaryZh.map((paragraph) => <p>{paragraph}</p>)}
             {chapter.directorZh && <p class="chapter-director">章节导演：{chapter.directorZh}</p>}
           </div>

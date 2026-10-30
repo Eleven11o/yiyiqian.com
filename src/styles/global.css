@@ -7532,3 +7532,82 @@ a.about-contact-item:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* English-led reading with concise Chinese support for Resonance. */
+.project-resonance .resonance-heading-zh {
+  display: block;
+  margin-top: .8rem;
+  font-size: .48em;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--muted);
+  letter-spacing: .01em;
+}
+.project-resonance .resonance-stage-list h3 .resonance-heading-zh,
+.project-resonance .resonance-public-encounter h3 .resonance-heading-zh { font-size: .72em; }
+.project-resonance .narrative-copy p.resonance-zh,
+.project-resonance .resonance-prose p.resonance-zh,
+.project-resonance .resonance-stage-list > li > p.resonance-zh,
+.project-resonance .research-publication p.resonance-zh {
+  font-size: clamp(.8rem,.9vw,.88rem);
+  line-height: 1.85;
+  color: var(--muted);
+  margin-top: .8rem;
+  text-align: justify;
+  hyphens: none;
+}
+.project-resonance .resonance-prose p.resonance-zh + p[lang="en"] { margin-top: 2rem; }
+.project-resonance figcaption .resonance-caption-zh {
+  display: block;
+  flex-basis: auto;
+  margin-top: 0;
+  color: var(--muted);
+  font-size: .9em;
+  line-height: 1.7;
+  text-align: left;
+}
+.project-resonance figcaption:has(.resonance-caption-zh) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .25rem;
+}
+.project-resonance figcaption:has(.resonance-caption-zh) > span {
+  margin: 0;
+  text-align: left;
+}
+.project-resonance figcaption:has(.resonance-caption-zh) > .resonance-caption-zh { order: 1; }
+.project-resonance figcaption:has(.resonance-caption-zh) > span:not(:first-child):not(.resonance-caption-zh) { order: 2; }
+
+/* Deepcore: English-led narration and supporting Chinese. */
+.project-deepcore .deepcore-heading-zh {
+  display: block;
+  color: var(--muted);
+  font-size: .5em;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: .75rem;
+}
+.project-deepcore .narrative-copy p.deepcore-zh,
+.project-deepcore .project-context-statement p.deepcore-zh {
+  color: var(--muted);
+  font-size: clamp(.8rem,.9vw,.88rem);
+  line-height: 1.85;
+  margin-top: 1.1rem;
+  text-align: justify;
+}
+.project-deepcore .chapter-historical-fact > p { margin: 0; }
+.project-deepcore .chapter-historical-fact > p.deepcore-zh {
+  color: var(--muted);
+  font-size: .75rem;
+  font-style: normal;
+  line-height: 1.8;
+  margin-top: .9rem;
+}
+.project-deepcore .chapter-copy { display: flex; flex-direction: column; gap: 1.25rem; }
+.project-deepcore .chapter-copy > div[lang="en"] { order: 0; color: var(--ink); margin: 0; padding: 0; border: 0; }
+.project-deepcore .chapter-copy > .deepcore-chapter-zh { order: 1; color: var(--muted); }
+.project-deepcore .chapter-copy > .deepcore-chapter-zh p { font-size: .84rem; line-height: 1.85; }
+.project-deepcore .chapter-entry-heading h3 { display: flex; flex-direction: column; }
+.project-deepcore .chapter-entry-heading h3 > span[lang="zh-Hans"] { order: 1; font-size: .65em; color: var(--muted); margin-top: .6rem; }
+.project-deepcore .chapter-entry-heading h3 > span:not([lang]) { order: 0; font-size: 1em; color: var(--ink); }
