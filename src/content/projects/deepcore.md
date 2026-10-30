@@ -1,6 +1,6 @@
 ---
 title: "Deepcore: When Cave Breath"
-titleZh: ""
+titleZh: "寻窟"
 subtitle: ""
 year: 2025
 category: "Cinematic VR"

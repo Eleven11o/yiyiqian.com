@@ -1295,6 +1295,16 @@ code {
   line-height: 1.4;
 }
 
+.about-biography > p.about-biography-zh {
+  margin-top: 1.5rem;
+  font-size: clamp(.85rem,1vw,.95rem);
+  line-height: 1.85;
+  color: var(--muted);
+  letter-spacing: 0;
+  text-justify: inter-character;
+  hyphens: none;
+}
+
 .about-contact-links {
   margin-top: 2rem;
   display: flex;

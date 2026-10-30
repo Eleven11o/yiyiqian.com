@@ -25,7 +25,7 @@ const { data } = project;
   <div class="project-preview-info">
     <div class="project-index-title">
       {index !== undefined && <span class="project-index">{String(index + 1).padStart(2, "0")}</span>}
-      <h3><a href={`/works/${project.id}/`}>{data.title}</a></h3>
+      <h3><a href={`/works/${project.id}/`}>{data.title}{data.titleZh && <span class="preview-title-zh" lang="zh-Hans">{data.titleZh}</span>}</a></h3>
     </div>
     <div class="project-archive-meta">
       <p>{data.category}</p>
@@ -33,3 +33,7 @@ const { data } = project;
     </div>
   </div>
 </article>
+
+<style>
+  .preview-title-zh { display: block; margin-top: .5rem; font-size: .72em; line-height: 1.5; font-weight: 400; letter-spacing: .01em; color: var(--muted); }
+</style>

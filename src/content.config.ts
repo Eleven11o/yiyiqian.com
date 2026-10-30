@@ -211,6 +211,7 @@ const pages = defineCollection({
       eyebrow: z.string(),
       title: z.string(),
       biography: z.string(),
+      biographyZh: z.string().optional(),
       education: z.array(z.string()).default([]),
       awards: z.array(z.string()).default([]),
       exhibitions: z.array(z.string()).default([]),

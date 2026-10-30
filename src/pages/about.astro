@@ -89,7 +89,8 @@ const curatorialExperience = [
     <section class="about-biography" aria-labelledby="biography-title">
       <p class="section-kicker">Biography</p>
       <h2 id="biography-title" class="visually-hidden">Biography</h2>
-      <p>{about.data.biography}</p>
+      <p lang="en">{about.data.biography}</p>
+      {about.data.biographyZh && <p class="about-biography-zh" lang="zh-Hans">{about.data.biographyZh}</p>}
 
       <div class="about-contact-links">
         <a href={`mailto:${profile.email}`} class="about-contact-item">
